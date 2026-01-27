@@ -1,31 +1,15 @@
-"use client"
-
-import React from "react"
-
-import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import {
   MapPin,
   Mail,
   Phone,
   Linkedin,
   MessageCircle,
-  Send,
-  Calendar,
 } from "lucide-react"
 
 const contactInfo = [
@@ -46,293 +30,158 @@ const contactInfo = [
   },
 ]
 
-const provinces = [
-  "Eastern Cape",
-  "Free State",
-  "Gauteng",
-  "KwaZulu-Natal",
-  "Limpopo",
-  "Mpumalanga",
-  "North West",
-  "Northern Cape",
-  "Western Cape",
-]
-
-const inquiryTypes = [
-  "Livestock Traceability",
-  "Crop Monitoring",
-  "Partnership Inquiry",
-  "Investment Opportunity",
-  "Technical Support",
-  "General Inquiry",
-]
-
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    province: "",
-    inquiryType: "",
-    farmSize: "",
-    message: "",
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Contact Us
-            </p>
+      <section className="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/team-field.jpg"
+            alt="Kgolo team in the field"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/90 via-foreground/80 to-background" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-medium mb-6 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              Get In Touch
+            </div>
             <h1
-              className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
+              className="text-4xl font-bold tracking-tight sm:text-6xl text-background text-balance mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Let's Grow Together
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              Ready to transform your agricultural operations? Get in touch with our team 
-              to discuss how Kgolo Agritech can help you achieve compliance and growth.
+            <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
+              Ready to transform your agricultural operations? Our team in Kimberley is
+              standing by to help you achieve compliance and unlock new growth opportunities.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <Card className="border-border">
-                <CardContent className="p-8">
-                  <h2
-                    className="text-2xl font-bold mb-6"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    Send Us a Message
-                  </h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
-                          required
-                        />
-                      </div>
-                    </div>
+      {/* Main Content with Mesh Background */}
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        {/* Background mesh pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="contact-mesh" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="20" cy="20" r="1" fill="currentColor" />
+                <path d="M40 20L0 20M20 0L20 40" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#contact-mesh)" />
+          </svg>
+        </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="+27 XX XXX XXXX"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="province">Province</Label>
-                        <Select
-                          value={formData.province}
-                          onValueChange={(value) =>
-                            setFormData({ ...formData, province: value })
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select province" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {provinces.map((province) => (
-                              <SelectItem key={province} value={province}>
-                                {province}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            {/* Contact Details */}
+            <div className="space-y-10">
+              <div>
+                <h2
+                  className="text-3xl font-bold mb-4"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Regional HQ
+                </h2>
+                <p className="text-muted-foreground text-lg max-w-md">
+                  Visit our headquarters in the heart of the Northern Cape or reach out
+                  through any of our digital channels.
+                </p>
+              </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                        <Select
-                          value={formData.inquiryType}
-                          onValueChange={(value) =>
-                            setFormData({ ...formData, inquiryType: value })
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select inquiry type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {inquiryTypes.map((type) => (
-                              <SelectItem key={type} value={type}>
-                                {type}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="farmSize">Farm Size (hectares)</Label>
-                        <Input
-                          id="farmSize"
-                          placeholder="e.g. 500"
-                          value={formData.farmSize}
-                          onChange={(e) =>
-                            setFormData({ ...formData, farmSize: e.target.value })
-                          }
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your agricultural operation and how we can help..."
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
-                        required
-                      />
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full md:w-auto">
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contact Info Sidebar */}
-            <div className="space-y-6">
-              {/* Contact Details */}
-              <Card className="border-border">
-                <CardContent className="p-6">
-                  <h3
-                    className="text-lg font-semibold mb-4"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    Contact Information
-                  </h3>
-                  <div className="space-y-4">
-                    {contactInfo.map((item) => (
-                      <div key={item.title} className="flex items-start gap-3">
-                        <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                          <item.icon className="h-5 w-5 text-primary" />
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1">
+                {contactInfo.map((item) => (
+                  <Card key={item.title} className="group border-border hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                          <item.icon className="h-6 w-6" />
                         </div>
                         <div>
-                          <p className="font-medium text-sm">{item.title}</p>
+                          <p className="font-semibold text-lg mb-1">{item.title}</p>
                           {item.details.map((detail) => (
-                            <p key={detail} className="text-muted-foreground text-sm">
+                            <p key={detail} className="text-muted-foreground group-hover:text-foreground transition-colors">
                               {detail}
                             </p>
                           ))}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
 
+            {/* Support Channels */}
+            <div className="space-y-6">
+              <h2
+                className="text-3xl font-bold mb-8"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Fast Response Channels
+              </h2>
               {/* WhatsApp */}
-              <Card className="border-border bg-primary/5">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <MessageCircle className="h-6 w-6 text-primary" />
+              <Card className="border-primary/20 bg-primary/[0.02] shadow-xl shadow-primary/5 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <MessageCircle className="h-24 w-24" />
+                </div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
+                      <MessageCircle className="h-6 w-6" />
+                    </div>
                     <h3
-                      className="text-lg font-semibold"
+                      className="text-2xl font-bold"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       WhatsApp Support
                     </h3>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Get quick responses via WhatsApp for technical support and inquiries.
+                  <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                    Get quick responses for technical support and general inquiries.
+                    Our team is active Monday - Friday, 08:00 - 17:00 (SAST).
                   </p>
-                  <Button variant="outline" className="w-full bg-transparent" asChild>
-                    <Link href="https://wa.me/27697919811" target="_blank">
-                      Chat on WhatsApp
+                  <Button size="lg" className="w-full shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform" asChild>
+                    <Link href="https://wa.me/27697919811?text=Hello%20Kgolo%20team%2C%20I%20would%20like%20to%20enquire%20about%20your%20services%20and%20how%20you%20can%20assist%20my%20agricultural%20operations." target="_blank">
+                      Let's Chat
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* Book Demo */}
-              <Card className="border-border bg-secondary">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Calendar className="h-6 w-6 text-primary" />
-                    <h3
-                      className="text-lg font-semibold"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      Book a Demo
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    See our technology in action with a personalized demonstration.
-                  </p>
-                  <Button className="w-full">Schedule Demo</Button>
-                </CardContent>
-              </Card>
-
               {/* LinkedIn */}
-              <Card className="border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Linkedin className="h-6 w-6 text-primary" />
+              <Card className="border-border hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-4 mb-4 text-[#0A66C2]">
+                    <div className="h-12 w-12 rounded-full bg-[#0A66C2]/10 flex items-center justify-center">
+                      <Linkedin className="h-6 w-6" />
+                    </div>
                     <h3
-                      className="text-lg font-semibold"
+                      className="text-2xl font-bold"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
-                      Follow Us
+                      LinkedIn Community
                     </h3>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Stay updated with the latest news and developments.
+                  <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
+                    Join our growing network of digital farmers and industry leaders.
+                    Stay updated with biosecurity news and technical insights.
                   </p>
-                  <Button variant="outline" className="w-full bg-transparent" asChild>
+                  <Button variant="outline" size="lg" className="w-full border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all" asChild>
                     <Link href="https://linkedin.com/company/kgolo-agritech" target="_blank">
                       Connect on LinkedIn
                     </Link>

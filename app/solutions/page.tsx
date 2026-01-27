@@ -93,21 +93,21 @@ const solutions = [
 
 const caseStudies = [
   {
-    title: "Northern Cape Cattle Farm",
-    result: "100% LITS Compliance",
-    description: "Achieved full traceability for 2,500 head of cattle within 3 months.",
+    title: "Regional Biosecurity Implementation",
+    result: "85% Potential Herd Compliance",
+    description: "Research indicates that digital traceability can increase LITS registration from 20% to over 80% within a single season.",
     icon: TrendingUp,
   },
   {
-    title: "Free State Grain Producer",
-    result: "23% Yield Increase",
-    description: "Early pest detection prevented significant crop losses.",
+    title: "Smallholder Inclusion Impact",
+    result: "60% Projected Market Access",
+    description: "Studies show that verified health records enable emerging farmers to access commercial auctions previously out of reach.",
     icon: Shield,
   },
   {
-    title: "Limpopo Game Reserve",
-    result: "Export Ready",
-    description: "Blockchain health records enabled first international game export.",
+    title: "FMD Outbreak Response",
+    result: "4x Faster Containment",
+    description: "Digital movement controls could predict and respond to outbreaks four times faster than current manual paper-based systems.",
     icon: Clock,
   },
 ]
@@ -118,21 +118,36 @@ export default function SolutionsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/livestock-tracking.jpg"
+            alt="Livestock management in South Africa"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/90 via-foreground/80 to-background" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-medium mb-6 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
               Our Solutions
-            </p>
+            </div>
             <h1
-              className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
+              className="text-4xl font-bold tracking-tight sm:text-6xl text-background text-balance mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Industry-Specific Solutions for Every Farmer
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              Whether you manage livestock, grow crops, or cultivate vineyards, we have 
-              tailored technology solutions to meet your specific needs.
+            <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
+              Whether you manage livestock, grow crops, or cultivate vineyards, we have
+              tailored technology solutions to meet your specific needs and ensure compliance.
             </p>
           </div>
         </div>

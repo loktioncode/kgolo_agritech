@@ -112,23 +112,23 @@ export default function HomePage() {
               The Digital Ledger for African Biosecurity
             </h1>
             <p className="mt-6 text-xl text-background/90 leading-relaxed max-w-2xl">
-              Powering South Africa's 2026 FMD recovery through AI diagnostics and Blockchain 
+              Powering South Africa's 2026 FMD recovery through AI diagnostics and Blockchain
               traceability. We turn livestock and crops into verified, bankable assets.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
                 <Link href="#demo">
                   <Play className="mr-2 h-4 w-4" />
-                  Watch the MVP Demo
+                  Watch MVP Progress
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background" 
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background"
                 asChild
               >
-                <Link href="#roadmap">
+                <Link href="/about#our-journey">
                   <FileText className="mr-2 h-4 w-4" />
                   View 2026 Roadmap
                 </Link>
@@ -205,9 +205,8 @@ export default function HomePage() {
             {techStack.map((tech, index) => (
               <div
                 key={tech.title}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                   <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
@@ -257,11 +256,10 @@ export default function HomePage() {
           <div className="flex justify-center gap-4 mb-12">
             <button
               onClick={() => setActiveTab("livestock")}
-              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${
-                activeTab === "livestock"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-card text-muted-foreground hover:bg-card/80"
-              }`}
+              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "livestock"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-card text-muted-foreground hover:bg-card/80"
+                }`}
               style={{ fontFamily: "var(--font-display)" }}
             >
               Livestock Module
@@ -269,11 +267,10 @@ export default function HomePage() {
             <button
               id="crops"
               onClick={() => setActiveTab("crops")}
-              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${
-                activeTab === "crops"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-card text-muted-foreground hover:bg-card/80"
-              }`}
+              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "crops"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-card text-muted-foreground hover:bg-card/80"
+                }`}
               style={{ fontFamily: "var(--font-display)" }}
             >
               Crop Module
@@ -297,7 +294,7 @@ export default function HomePage() {
                       Livestock Traceability & Biosecurity
                     </h3>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      Complete FMD compliance solution with LITS integration and Section 10 scheme support. 
+                      Complete FMD compliance solution with LITS integration and Section 10 scheme support.
                       Track every animal's health status, movements, and vaccinations with immutable records.
                     </p>
                     <ul className="space-y-3">
@@ -342,7 +339,7 @@ export default function HomePage() {
                       Crop Health & Export Compliance
                     </h3>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      Advanced pest detection and nutrient deficiency analysis for export-grade produce. 
+                      Advanced pest detection and nutrient deficiency analysis for export-grade produce.
                       Complete residue tracking for international market compliance.
                     </p>
                     <ul className="space-y-3">
@@ -411,7 +408,7 @@ export default function HomePage() {
             </p>
             <div className="mt-10">
               <Button size="lg" asChild>
-                <Link href="/investor-portal">
+                <Link href="https://wa.me/27697919811?text=I%20am%20willing%20to%20invest%2C%20let%27s%20set%20a%20meeting%20at%20your%20earliest%20convenience." target="_blank">
                   <Lock className="mr-2 h-4 w-4" />
                   Enter Secure Investor Portal
                 </Link>
@@ -484,10 +481,10 @@ export default function HomePage() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background" 
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background"
                   asChild
                 >
                   <Link href="tel:+27697919811">

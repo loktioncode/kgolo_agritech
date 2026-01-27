@@ -87,73 +87,101 @@ export default function ServicesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero-drone.jpg"
+            alt="South African green farmland"
+            fill
+            className="object-cover opacity-70"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/95 via-foreground/80 to-background" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Our Services
-            </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-medium mb-6 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              Our Expertise
+            </div>
             <h1
-              className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
+              className="text-4xl font-bold tracking-tight sm:text-6xl text-background text-balance mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Technology Solutions for Modern Agriculture
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              From AI-powered diagnostics to blockchain traceability, we provide the complete 
-              technology stack for biosecurity compliance and agricultural excellence.
+            <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
+              From AI-powered diagnostics to blockchain traceability, we provide the complete
+              technology stack for biosecurity compliance and agricultural excellence across South Africa.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Services */}
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="space-y-24">
+      {/* Main Services Section with Mesh Background */}
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        {/* Background mesh pattern */}
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="services-mesh" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="1.5" fill="currentColor" />
+                <path d="M60 30L0 30M30 0L30 60" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#services-mesh)" />
+          </svg>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="space-y-32">
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center`}
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <service.icon className="h-8 w-8 text-primary" />
+                  <div className="h-20 w-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-8 shadow-inner shadow-primary/5">
+                    <service.icon className="h-10 w-10 text-primary" />
                   </div>
                   <h2
-                    className="text-3xl font-bold mb-4"
+                    className="text-3xl font-bold mb-6 sm:text-4xl"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {service.title}
                   </h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-10">
                     {service.description}
                   </p>
-                  <ul className="space-y-3 mb-8">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Check className="h-4 w-4 text-primary" />
+                      <li key={feature} className="flex items-center gap-3 group">
+                        <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                          <Check className="h-4 w-4 text-primary group-hover:text-current" />
                         </div>
-                        <span className="text-foreground">{feature}</span>
+                        <span className="text-foreground/80 font-medium">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <Button asChild>
+                  <Button size="lg" className="hover:scale-[1.02] transition-transform" asChild>
                     <Link href="/contact">
-                      Learn More
+                      Discuss Implementation
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
-                <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className={`relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <Image
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-primary/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent mix-blend-overlay" />
                 </div>
               </div>
             ))}
@@ -161,35 +189,40 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-20 lg:py-28 bg-secondary">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+      {/* Additional Capabilities Section */}
+      <section className="py-24 lg:py-32 bg-secondary/50 relative overflow-hidden">
+        {/* Background blobs for color */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-20">
             <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl"
+              className="text-3xl font-bold tracking-tight sm:text-5xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Additional Capabilities
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Complementary services that enhance your agricultural operations.
+            <p className="mt-6 text-xl text-muted-foreground">
+              Complementary ecosystem services engineered for the unique challenges
+              of the African agricultural landscape.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {additionalServices.map((service) => (
-              <Card key={service.title} className="border-border bg-card">
-                <CardContent className="p-8">
-                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                    <service.icon className="h-7 w-7 text-primary" />
+              <Card key={service.title} className="group border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-10">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                    <service.icon className="h-8 w-8" />
                   </div>
                   <h3
-                    className="text-xl font-semibold mb-3"
+                    className="text-2xl font-bold mb-4"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground text-lg leading-relaxed">
                     {service.description}
                   </p>
                 </CardContent>
@@ -200,31 +233,43 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-28">
+      <section className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="rounded-3xl bg-primary p-12 md:p-16 text-center">
-            <h2
-              className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Ready to Transform Your Operations?
-            </h2>
-            <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-              Get in touch to discuss how our technology can help you achieve compliance 
-              and operational excellence.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">Request a Demo</Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                asChild
+          <div className="relative rounded-3xl bg-primary px-8 py-20 md:px-16 md:py-24 text-center overflow-hidden shadow-2xl">
+            {/* CTA Decorative Elements */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="cta-mesh" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M30 0L0 30M0 0L30 30" stroke="white" strokeWidth="0.5" />
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#cta-mesh)" />
+              </svg>
+            </div>
+
+            <div className="relative z-10">
+              <h2
+                className="text-4xl font-bold tracking-tight text-primary-foreground sm:text-6xl mb-8"
+                style={{ fontFamily: "var(--font-display)" }}
               >
-                <Link href="/solutions">View Solutions</Link>
-              </Button>
+                Ready to Secure Your Herd's Future?
+              </h2>
+              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-12">
+                Join the digital biosecurity revolution. Get compliant with LITS
+                before the 2026 mandate with our phased implementation approach.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button size="lg" variant="secondary" className="px-10 py-7 text-lg hover:scale-105 transition-transform" asChild>
+                  <Link href="/contact">Schedule Site Visit</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-10 py-7 text-lg bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground transition-all"
+                  asChild
+                >
+                  <Link href="/solutions">Explore Solutions</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
