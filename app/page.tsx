@@ -24,6 +24,7 @@ import {
 import { FadeIn } from "@/components/animations/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
 import { MeshBackground } from "@/components/ui/mesh-background"
+import { GrowingPlant } from "@/components/animations/growing-plant"
 
 const problemCards = [
   {
@@ -435,8 +436,17 @@ export default function HomePage() {
       </section>
 
       {/* Compliance & Stats Section */}
-      <section className="py-24 lg:py-32 bg-primary">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative py-24 lg:py-32 bg-primary overflow-hidden">
+        {/* Decorative Plants */}
+        <div className="absolute bottom-0 left-0 w-full flex justify-around items-end px-12 pointer-events-none opacity-20">
+          <GrowingPlant className="w-24 h-24" color="accent" />
+          <GrowingPlant className="w-32 h-32" color="primary" />
+          <GrowingPlant className="w-20 h-20" color="accent" />
+          <GrowingPlant className="w-40 h-40" color="primary" />
+          <GrowingPlant className="w-28 h-28" color="accent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           {/* Compliance Logos */}
           <StaggerContainer className="flex flex-wrap justify-center gap-8 mb-16">
             {complianceLogos.map((logo) => (
