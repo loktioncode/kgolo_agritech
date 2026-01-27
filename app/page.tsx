@@ -117,9 +117,9 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
-                <Link href="#demo">
+                <Link href="/contact">
                   <Play className="mr-2 h-4 w-4" />
-                  Watch MVP Progress
+                  Learn More
                 </Link>
               </Button>
               <Button
@@ -476,8 +476,8 @@ export default function HomePage() {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="get-app">
                 <Button size="lg" asChild>
-                  <Link href="#get-app">
-                    Get the App
+                  <Link href="#">
+                    App Coming Soon
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
