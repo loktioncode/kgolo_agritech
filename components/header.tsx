@@ -114,12 +114,7 @@ export function Header() {
                 <div className="grid gap-4">
                   <Button className="w-full justify-center shadow-xl shadow-primary/20 h-14 text-lg font-bold rounded-2xl" asChild>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
-                      Get Started
-                    </Link>
-                  </Button>
-                  <Button variant="outline" className="w-full justify-center h-14 text-lg font-semibold rounded-2xl bg-background border-border/50" asChild>
-                    <Link href="/solutions" onClick={() => setIsOpen(false)}>
-                      Explore Solutions
+                      Let's Chat
                     </Link>
                   </Button>
                 </div>
