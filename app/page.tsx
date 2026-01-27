@@ -21,6 +21,9 @@ import {
   Leaf,
   Bug,
 } from "lucide-react"
+import { FadeIn } from "@/components/animations/fade-in"
+import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
+import { MeshBackground } from "@/components/ui/mesh-background"
 
 const problemCards = [
   {
@@ -102,109 +105,124 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="max-w-3xl">
-            <p className="text-lg text-accent font-medium italic mb-4">
-              "Innovating Agriculture for Tomorrow"
-            </p>
-            <h1
-              className="text-4xl font-bold tracking-tight text-background sm:text-5xl lg:text-6xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              The Digital Ledger for African Biosecurity
-            </h1>
-            <p className="mt-6 text-xl text-background/90 leading-relaxed max-w-2xl">
-              Powering South Africa's 2026 FMD recovery through AI diagnostics and Blockchain
-              traceability. We turn livestock and crops into verified, bankable assets.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <Link href="/contact">
-                  <Play className="mr-2 h-4 w-4" />
-                  Learn More
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background"
-                asChild
+            <FadeIn direction="down" delay={0.2}>
+              <p className="text-lg text-accent font-medium italic mb-4">
+                "Innovating Agriculture for Tomorrow"
+              </p>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.4}>
+              <h1
+                className="text-4xl font-bold tracking-tight text-background sm:text-5xl lg:text-6xl text-balance"
+                style={{ fontFamily: "var(--font-display)" }}
               >
-                <Link href="/about#our-journey">
-                  <FileText className="mr-2 h-4 w-4" />
-                  View 2026 Roadmap
-                </Link>
-              </Button>
-            </div>
+                The Digital Ledger for African Biosecurity
+              </h1>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.6}>
+              <p className="mt-6 text-xl text-background/90 leading-relaxed max-w-2xl">
+                Powering South Africa's 2026 FMD recovery through AI diagnostics and Blockchain
+                traceability. We turn livestock and crops into verified, bankable assets.
+              </p>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.8} className="mt-10">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" asChild className="hover:scale-105 transition-transform">
+                  <Link href="/contact">
+                    <Play className="mr-2 h-4 w-4" />
+                    Learn More
+                  </Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
+                  asChild
+                >
+                  <Link href="/about#our-journey">
+                    <FileText className="mr-2 h-4 w-4" />
+                    View 2026 Roadmap
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <FadeIn direction="none" delay={1.2} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
           <div className="w-6 h-10 border-2 border-background/50 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-background/50 rounded-full mt-2 animate-bounce" />
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* FMD Crisis Section */}
       <section id="impact" className="py-24 lg:py-32 bg-secondary">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              The Challenge
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              The FMD Crisis Demands Digital Solutions
-            </h2>
+            <FadeIn direction="up">
+              <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+                The Challenge
+              </p>
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                The FMD Crisis Demands Digital Solutions
+              </h2>
+            </FadeIn>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <StaggerContainer className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {problemCards.map((card) => (
-              <Card
-                key={card.title}
-                className="border-border bg-card hover:border-primary/50 transition-colors"
-              >
-                <CardContent className="p-8">
-                  <div className="h-14 w-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-6">
-                    <card.icon className="h-7 w-7 text-destructive" />
-                  </div>
-                  <h3
-                    className="text-xl font-semibold mb-3"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {card.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <StaggerItem key={card.title}>
+                <Card
+                  className="border-border bg-card hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all"
+                >
+                  <CardContent className="p-8">
+                    <div className="h-14 w-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-6">
+                      <card.icon className="h-7 w-7 text-destructive" />
+                    </div>
+                    <h3
+                      className="text-xl font-semibold mb-3"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {card.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {card.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Technology Stack Section */}
-      <section id="technology" className="py-24 lg:py-32">
+      <section id="technology" className="relative py-24 lg:py-32 overflow-hidden">
+        <MeshBackground opacity={0.03} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Our Technology
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              The Technology Stack
-            </h2>
+            <FadeIn direction="up">
+              <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+                Our Technology
+              </p>
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                The Technology Stack
+              </h2>
+            </FadeIn>
           </div>
 
           <div className="space-y-24">
             {techStack.map((tech, index) => (
-              <div
+              <FadeIn
                 key={tech.title}
+                direction={index % 2 === 0 ? "right" : "left"}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
                   }`}
               >
@@ -222,7 +240,7 @@ export default function HomePage() {
                     {tech.description}
                   </p>
                 </div>
-                <div className={`relative aspect-video rounded-2xl overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className={`relative aspect-video rounded-2xl overflow-hidden shadow-2xl ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <Image
                     src={tech.image || "/placeholder.svg"}
                     alt={tech.title}
@@ -231,32 +249,35 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-primary/10" />
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
       {/* Dual-Commodity Tabs Section */}
-      <section id="livestock" className="py-24 lg:py-32 bg-secondary">
+      <section id="solutions" className="relative py-24 lg:py-32 overflow-hidden">
+        <MeshBackground opacity={0.03} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Our Modules
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              The Dual-Commodity Approach
-            </h2>
+            <FadeIn direction="up">
+              <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+                Our Modules
+              </p>
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                The Dual-Commodity Approach
+              </h2>
+            </FadeIn>
           </div>
 
           {/* Tabs */}
-          <div className="flex justify-center gap-4 mb-12">
+          <FadeIn direction="up" delay={0.2} className="flex justify-center gap-4 mb-12">
             <button
               onClick={() => setActiveTab("livestock")}
-              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "livestock"
+              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105 ${activeTab === "livestock"
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "bg-card text-muted-foreground hover:bg-card/80"
                 }`}
@@ -267,7 +288,7 @@ export default function HomePage() {
             <button
               id="crops"
               onClick={() => setActiveTab("crops")}
-              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "crops"
+              className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105 ${activeTab === "crops"
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "bg-card text-muted-foreground hover:bg-card/80"
                 }`}
@@ -275,139 +296,131 @@ export default function HomePage() {
             >
               Crop Module
             </button>
-          </div>
+          </FadeIn>
 
           {/* Tab Content */}
-          <Card className="border-border">
-            <CardContent className="p-8 lg:p-12">
-              {activeTab === "livestock" ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
-                      <Shield className="h-4 w-4" />
-                      Active Now
+          <FadeIn direction="up" delay={0.4}>
+            <Card className="border-border overflow-hidden">
+              <CardContent className="p-8 lg:p-12">
+                {activeTab === "livestock" ? (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+                        <Shield className="h-4 w-4" />
+                        Active Now
+                      </div>
+                      <h3
+                        className="text-2xl font-bold mb-4"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        Livestock Traceability & Biosecurity
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        Complete FMD compliance solution with LITS integration and Section 10 scheme support.
+                        Track every animal's health status, movements, and vaccinations with immutable records.
+                      </p>
+                      <ul className="space-y-3">
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                          FMD lesion detection via AI
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                          LITS compliance automation
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                          Section 10 scheme integration
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-primary" />
+                          Blockchain health passports
+                        </li>
+                      </ul>
                     </div>
-                    <h3
-                      className="text-2xl font-bold mb-4"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      Livestock Traceability & Biosecurity
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      Complete FMD compliance solution with LITS integration and Section 10 scheme support.
-                      Track every animal's health status, movements, and vaccinations with immutable records.
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-primary" />
-                        FMD lesion detection via AI
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-primary" />
-                        LITS compliance automation
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-primary" />
-                        Section 10 scheme integration
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-primary" />
-                        Blockchain health passports
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                    <Image
-                      src="/images/livestock-tracking.jpg"
-                      alt="Livestock tracking and monitoring"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full text-accent-foreground text-sm font-medium mb-6">
-                      <Leaf className="h-4 w-4" />
-                      Launching July 2026
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/images/livestock-tracking.jpg"
+                        alt="Livestock tracking and monitoring"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <h3
-                      className="text-2xl font-bold mb-4"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      Crop Health & Export Compliance
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      Advanced pest detection and nutrient deficiency analysis for export-grade produce.
-                      Complete residue tracking for international market compliance.
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-accent" />
-                        Fall Armyworm detection
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-accent" />
-                        Nutrient deficiency analysis
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-accent" />
-                        Export-grade residue tracking
-                      </li>
-                      <li className="flex items-center gap-3 text-foreground">
-                        <div className="h-2 w-2 rounded-full bg-accent" />
-                        Harvest optimization
-                      </li>
-                    </ul>
                   </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                    <Image
-                      src="/images/crop-monitoring.jpg"
-                      alt="Crop health monitoring"
-                      fill
-                      className="object-cover"
-                    />
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full text-accent-foreground text-sm font-medium mb-6">
+                        <Leaf className="h-4 w-4" />
+                        Launching July 2026
+                      </div>
+                      <h3
+                        className="text-2xl font-bold mb-4"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        Crop Health & Export Compliance
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        Advanced pest detection and nutrient deficiency analysis for export-grade produce.
+                        Complete residue tracking for international market compliance.
+                      </p>
+                      <ul className="space-y-3">
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-accent" />
+                          Fall Armyworm detection
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-accent" />
+                          Nutrient deficiency analysis
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-accent" />
+                          Export-grade residue tracking
+                        </li>
+                        <li className="flex items-center gap-3 text-foreground">
+                          <div className="h-2 w-2 rounded-full bg-accent" />
+                          Harvest optimization
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/images/crop-monitoring.jpg"
+                        alt="Crop health monitoring"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                )}
+              </CardContent>
+            </Card>
+          </FadeIn>
         </div>
       </section>
 
       {/* Investor Portal Section */}
       <section id="investor" className="py-24 lg:py-32 relative overflow-hidden">
-        {/* Background mesh pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="mesh" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="1.5" fill="currentColor" />
-                <line x1="30" y1="0" x2="30" y2="60" stroke="currentColor" strokeWidth="0.5" />
-                <line x1="0" y1="30" x2="60" y2="30" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#mesh)" />
-          </svg>
-        </div>
+        <MeshBackground opacity={0.05} />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Partner With Us
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Investor & Partner Dashboard
-            </h2>
-            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              We are currently seeking strategic partners for our R300k Phase 1 expansion.
-            </p>
-            <div className="mt-10">
-              <Button size="lg" asChild>
+            <FadeIn direction="up">
+              <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+                Partner With Us
+              </p>
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Investor & Partner Dashboard
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+                We are currently seeking strategic partners for our R300k Phase 1 expansion.
+              </p>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.2} className="mt-10">
+              <Button size="lg" asChild className="hover:scale-105 transition-transform shadow-lg">
                 <Link href="https://wa.me/27697919811?text=I%20am%20willing%20to%20invest%2C%20let%27s%20set%20a%20meeting%20at%20your%20earliest%20convenience." target="_blank">
                   <Lock className="mr-2 h-4 w-4" />
                   Enter Secure Investor Portal
@@ -416,7 +429,7 @@ export default function HomePage() {
               <p className="mt-4 text-sm text-muted-foreground">
                 Access requires digital signature on NDA before downloading pitch deck.
               </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -425,21 +438,22 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 bg-primary">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Compliance Logos */}
-          <div className="flex flex-wrap justify-center gap-8 mb-16">
+          <StaggerContainer className="flex flex-wrap justify-center gap-8 mb-16">
             {complianceLogos.map((logo) => (
-              <div
+              <StaggerItem
                 key={logo.name}
-                className="px-6 py-3 bg-primary-foreground/10 rounded-lg text-primary-foreground/70 text-sm font-medium"
               >
-                {logo.label}
-              </div>
+                <div className="px-6 py-3 bg-primary-foreground/10 rounded-lg text-primary-foreground/70 text-sm font-medium hover:bg-primary-foreground/20 transition-colors">
+                  {logo.label}
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <StaggerContainer className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
+              <StaggerItem key={stat.label} className="text-center">
                 <p
                   className="text-4xl font-bold text-primary-foreground sm:text-5xl"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -447,53 +461,56 @@ export default function HomePage() {
                   {stat.value}
                 </p>
                 <p className="mt-2 text-lg text-primary-foreground/70">{stat.label}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Demo CTA Section */}
-      <section id="demo" className="py-24 lg:py-32">
+      <section id="demo" className="relative py-24 lg:py-32 overflow-hidden">
+        <MeshBackground opacity={0.03} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden">
-            <Image
-              src="/images/team-field.jpg"
-              alt="Kgolo team working in the field"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-foreground/80" />
-            <div className="relative z-10 py-20 px-8 md:py-28 md:px-16 text-center">
-              <h2
-                className="text-3xl font-bold tracking-tight text-background sm:text-4xl lg:text-5xl text-balance"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Ready to Secure Your Herd's Future?
-              </h2>
-              <p className="mt-6 text-xl text-background/80 max-w-2xl mx-auto">
-                Join the digital biosecurity revolution. Get compliant before the January 2026 mandate.
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="get-app">
-                <Button size="lg" asChild>
-                  <Link href="#">
-                    App Coming Soon
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background"
-                  asChild
+          <FadeIn direction="up">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/team-field.jpg"
+                alt="Kgolo team working in the field"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-foreground/80" />
+              <div className="relative z-10 py-20 px-8 md:py-28 md:px-16 text-center">
+                <h2
+                  className="text-3xl font-bold tracking-tight text-background sm:text-4xl lg:text-5xl text-balance"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  <Link href="tel:+27697919811">
-                    Call +27 69 791 9811
-                  </Link>
-                </Button>
+                  Ready to Secure Your Herd's Future?
+                </h2>
+                <p className="mt-6 text-xl text-background/80 max-w-2xl mx-auto">
+                  Join the digital biosecurity revolution. Get compliant before the January 2026 mandate.
+                </p>
+                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="get-app">
+                  <Button size="lg" asChild className="hover:scale-105 transition-transform">
+                    <Link href="#">
+                      App Coming Soon
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
+                    asChild
+                  >
+                    <Link href="tel:+27697919811">
+                      Call +27 69 791 9811
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
