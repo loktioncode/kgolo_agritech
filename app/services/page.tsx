@@ -14,6 +14,9 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react"
+import { FadeIn } from "@/components/animations/fade-in"
+import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
+import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
   title: "Services | Kgolo Agritech - AI & Blockchain Solutions",
@@ -101,47 +104,41 @@ export default function ServicesPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-medium mb-6 backdrop-blur-sm">
+            <FadeIn direction="down" delay={0.2} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-medium mb-6 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               Our Expertise
-            </div>
-            <h1
-              className="text-4xl font-bold tracking-tight sm:text-6xl text-background text-balance mb-6"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Technology Solutions for Modern Agriculture
-            </h1>
-            <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
-              From AI-powered diagnostics to blockchain traceability, we provide the complete
-              technology stack for biosecurity compliance and agricultural excellence across South Africa.
-            </p>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.4}>
+              <h1
+                className="text-4xl font-bold tracking-tight sm:text-6xl text-background text-balance mb-6"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Technology Solutions for Modern Agriculture
+              </h1>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.6}>
+              <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
+                From AI-powered diagnostics to blockchain traceability, we provide the complete
+                technology stack for biosecurity compliance and agricultural excellence across South Africa.
+              </p>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* Main Services Section with Mesh Background */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
-        {/* Background mesh pattern */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="services-mesh" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="1.5" fill="currentColor" />
-                <path d="M60 30L0 30M30 0L30 60" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#services-mesh)" />
-          </svg>
-        </div>
+        <MeshBackground opacity={0.05} />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="space-y-32">
             {services.map((service, index) => (
-              <div
+              <FadeIn
                 key={service.title}
+                direction={index % 2 === 0 ? "right" : "left"}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center`}
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
@@ -183,95 +180,103 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent mix-blend-overlay" />
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
       {/* Additional Capabilities Section */}
-      <section className="py-24 lg:py-32 bg-secondary/50 relative overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-secondary/50 overflow-hidden">
+        <MeshBackground opacity={0.04} />
         {/* Background blobs for color */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-5xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Additional Capabilities
-            </h2>
-            <p className="mt-6 text-xl text-muted-foreground">
-              Complementary ecosystem services engineered for the unique challenges
-              of the African agricultural landscape.
-            </p>
+            <FadeIn direction="up">
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-5xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Additional Capabilities
+              </h2>
+              <p className="mt-6 text-xl text-muted-foreground">
+                Complementary ecosystem services engineered for the unique challenges
+                of the African agricultural landscape.
+              </p>
+            </FadeIn>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <StaggerContainer className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {additionalServices.map((service) => (
-              <Card key={service.title} className="group border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl transition-all duration-300">
-                <CardContent className="p-10">
-                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-                    <service.icon className="h-8 w-8" />
-                  </div>
-                  <h3
-                    className="text-2xl font-bold mb-4"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
-                    {service.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <StaggerItem key={service.title}>
+                <Card className="group border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+                  <CardContent className="p-10">
+                    <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                      <service.icon className="h-8 w-8" />
+                    </div>
+                    <h3
+                      className="text-2xl font-bold mb-4"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <MeshBackground opacity={0.03} />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative rounded-3xl bg-primary px-8 py-20 md:px-16 md:py-24 text-center overflow-hidden shadow-2xl">
-            {/* CTA Decorative Elements */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <pattern id="cta-mesh" width="30" height="30" patternUnits="userSpaceOnUse">
-                  <path d="M30 0L0 30M0 0L30 30" stroke="white" strokeWidth="0.5" />
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#cta-mesh)" />
-              </svg>
-            </div>
+          <FadeIn direction="up">
+            <div className="relative rounded-3xl bg-primary px-8 py-20 md:px-16 md:py-24 text-center overflow-hidden shadow-2xl">
+              {/* CTA Decorative Elements */}
+              <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  <pattern id="cta-mesh" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M30 0L0 30M0 0L30 30" stroke="white" strokeWidth="0.5" />
+                  </pattern>
+                  <rect width="100%" height="100%" fill="url(#cta-mesh)" />
+                </svg>
+              </div>
 
-            <div className="relative z-10">
-              <h2
-                className="text-4xl font-bold tracking-tight text-primary-foreground sm:text-6xl mb-8"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Ready to Secure Your Herd's Future?
-              </h2>
-              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-12">
-                Join the digital biosecurity revolution. Get compliant with LITS
-                before the 2026 mandate with our phased implementation approach.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button size="lg" variant="secondary" className="px-10 py-7 text-lg hover:scale-105 transition-transform" asChild>
-                  <Link href="/contact">Schedule Site Visit</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="px-10 py-7 text-lg bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground transition-all"
-                  asChild
+              <div className="relative z-10">
+                <h2
+                  className="text-4xl font-bold tracking-tight text-primary-foreground sm:text-6xl mb-8"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
-                  <Link href="/solutions">Explore Solutions</Link>
-                </Button>
+                  Ready to Secure Your Herd's Future?
+                </h2>
+                <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-12">
+                  Join the digital biosecurity revolution. Get compliant with LITS
+                  before the 2026 mandate with our phased implementation approach.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <Button size="lg" variant="secondary" className="px-10 py-7 text-lg hover:scale-105 transition-transform" asChild>
+                    <Link href="/contact">Schedule Site Visit</Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="px-10 py-7 text-lg bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground hover:scale-105 transition-all"
+                    asChild
+                  >
+                    <Link href="/solutions">Explore Solutions</Link>
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
