@@ -257,8 +257,8 @@ export default function HomePage() {
             <button
               onClick={() => setActiveTab("livestock")}
               className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "livestock"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-card text-muted-foreground hover:bg-card/80"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-card text-muted-foreground hover:bg-card/80"
                 }`}
               style={{ fontFamily: "var(--font-display)" }}
             >
@@ -268,8 +268,8 @@ export default function HomePage() {
               id="crops"
               onClick={() => setActiveTab("crops")}
               className={`px-8 py-4 rounded-xl text-lg font-semibold transition-all ${activeTab === "crops"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-card text-muted-foreground hover:bg-card/80"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-card text-muted-foreground hover:bg-card/80"
                 }`}
               style={{ fontFamily: "var(--font-display)" }}
             >
@@ -408,7 +408,7 @@ export default function HomePage() {
             </p>
             <div className="mt-10">
               <Button size="lg" asChild>
-                <Link href="/investor-portal">
+                <Link href="https://wa.me/27697919811?text=I%20am%20willing%20to%20invest%2C%20let%27s%20set%20a%20meeting%20at%20your%20earliest%20convenience." target="_blank">
                   <Lock className="mr-2 h-4 w-4" />
                   Enter Secure Investor Portal
                 </Link>

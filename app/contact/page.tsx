@@ -156,8 +156,8 @@ export default function ContactPage() {
                     Our team is active Monday - Friday, 08:00 - 17:00 (SAST).
                   </p>
                   <Button size="lg" className="w-full shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform" asChild>
-                    <Link href="https://wa.me/27697919811" target="_blank">
-                      Start Real-time Chat
+                    <Link href="https://wa.me/27697919811?text=Hello%20Kgolo%20team%2C%20I%20would%20like%20to%20enquire%20about%20your%20services%20and%20how%20you%20can%20assist%20my%20agricultural%20operations." target="_blank">
+                      Let's Chat
                     </Link>
                   </Button>
                 </CardContent>
