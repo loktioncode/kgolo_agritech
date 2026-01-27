@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 
 export const metadata = {
-  title: "Services | AeroVeld - Aerial & GIS Solutions",
+  title: "Services | Kgolo Agritech - Aerial & GIS Solutions",
   description:
     "Comprehensive aerial surveying, GIS mapping, crop monitoring, and livestock tracking services for South African agriculture.",
 }

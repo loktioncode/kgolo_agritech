@@ -8,9 +8,9 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
-  title: 'AeroVeld | Aerial & GIS Technology for Agriculture',
+  title: 'Kgolo Agritech | Aerial & GIS Technology for Agriculture',
   description: 'South African agritech company specializing in aerial drone technology and GIS mapping for precision livestock tracking and crop monitoring.',
-  keywords: ['agritech', 'drone technology', 'GIS mapping', 'livestock monitoring', 'crop monitoring', 'precision agriculture', 'South Africa'],
+  keywords: ['Kgolo Agritech', 'agritech', 'drone technology', 'GIS mapping', 'livestock monitoring', 'crop monitoring', 'precision agriculture', 'South Africa'],
   icons: {
     icon: [
       {

@@ -38,7 +38,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: ["info@aeroveld.co.za", "support@aeroveld.co.za"],
+    details: ["info@kgoloagritech.co.za", "support@kgoloagritech.co.za"],
   },
   {
     icon: Phone,
@@ -408,7 +408,7 @@ export default function ContactPage() {
               <div className="text-center">
                 <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
                 <p className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>
-                  AeroVeld Headquarters
+                  Kgolo Agritech Headquarters
                 </p>
                 <p className="text-sm text-muted-foreground">
                   123 Agricultural Tech Park, Cape Town

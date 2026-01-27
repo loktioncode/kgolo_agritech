@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { MapPin, Mail, Phone } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 const footerLinks = {
   services: [
@@ -29,37 +30,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <svg
-                className="h-8 w-8 text-primary-foreground"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 2L2 9L16 16L30 9L16 2Z"
-                  fill="currentColor"
-                  fillOpacity="0.2"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 23L16 30L30 23"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 16L16 23L30 16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="text-xl font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-                AeroVeld
-              </span>
+            <Link href="/" className="inline-block">
+              <Logo className="h-9 w-9" variant="light" />
             </Link>
             <p className="mt-4 text-sm text-background/70 max-w-xs">
               Pioneering aerial and GIS technology for precision agriculture across South Africa.
@@ -71,7 +43,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Mail className="h-4 w-4" />
-                <span>info@aeroveld.co.za</span>
+                <span>info@kgoloagritech.co.za</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Phone className="h-4 w-4" />
@@ -140,7 +112,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-background/10 pt-8">
           <p className="text-center text-sm text-background/50">
-            &copy; {new Date().getFullYear()} AeroVeld. All rights reserved. Proudly South African.
+            &copy; {new Date().getFullYear()} Kgolo Agritech. All rights reserved. Proudly South African.
           </p>
         </div>
       </div>

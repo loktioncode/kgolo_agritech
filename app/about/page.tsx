@@ -7,9 +7,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Target, Eye, Heart, Award, Users, Globe } from "lucide-react"
 
 export const metadata = {
-  title: "About Us | AeroVeld - South African Agritech Pioneers",
+  title: "About Us | Kgolo Agritech - South African Agritech Pioneers",
   description:
-    "Learn about AeroVeld's mission to transform South African agriculture through aerial and GIS technology.",
+    "Learn about Kgolo Agritech's mission to transform South African agriculture through aerial and GIS technology.",
 }
 
 const values = [
@@ -43,7 +43,7 @@ const milestones = [
   {
     year: "2018",
     title: "Founded in Cape Town",
-    description: "AeroVeld was established with a vision to modernize South African agriculture.",
+    description: "Kgolo Agritech was established with a vision to modernize South African agriculture.",
   },
   {
     year: "2019",
@@ -101,7 +101,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-                About AeroVeld
+                About Kgolo Agritech
               </p>
               <h1
                 className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 Pioneering Agricultural Innovation in Africa
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Founded in Cape Town, AeroVeld is dedicated to transforming South African
+                Founded in Cape Town, Kgolo Agritech is dedicated to transforming South African
                 agriculture through cutting-edge aerial and GIS technology. We believe that
                 precision farming is the key to sustainable food security.
               </p>

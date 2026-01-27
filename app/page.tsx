@@ -267,7 +267,7 @@ export default function HomePage() {
           <div className="relative rounded-2xl overflow-hidden">
             <Image
               src="/images/team-field.jpg"
-              alt="AeroVeld team in the field"
+              alt="Kgolo Agritech team in the field"
               fill
               className="object-cover"
             />
@@ -280,7 +280,7 @@ export default function HomePage() {
                 Ready to Transform Your Farm?
               </h2>
               <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
-                Join over 200 South African farmers who trust AeroVeld for their precision
+                Join over 200 South African farmers who trust Kgolo Agritech for their precision
                 agriculture needs. Get a free consultation today.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">

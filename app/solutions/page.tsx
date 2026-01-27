@@ -20,7 +20,7 @@ import {
 } from "lucide-react"
 
 export const metadata = {
-  title: "Solutions | AeroVeld - Industry-Specific Agricultural Solutions",
+  title: "Solutions | Kgolo Agritech - Industry-Specific Agricultural Solutions",
   description:
     "Tailored aerial and GIS solutions for crop farming, livestock management, viticulture, and more across South Africa.",
 }
@@ -374,7 +374,7 @@ export default function SolutionsPage() {
               Real Results from Real Farms
             </h2>
             <p className="mt-4 text-muted-foreground">
-              See how South African farmers are achieving measurable improvements with AeroVeld.
+              See how South African farmers are achieving measurable improvements with Kgolo Agritech.
             </p>
           </div>
 
