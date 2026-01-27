@@ -3,109 +3,81 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import {
-  ArrowRight,
-  Plane,
-  MapPin,
+  Brain,
+  Shield,
+  Wifi,
+  Smartphone,
+  Database,
   BarChart3,
-  Leaf,
-  Radio,
-  Satellite,
-  Camera,
-  FileSearch,
-  CheckCircle2,
+  ArrowRight,
+  Check,
 } from "lucide-react"
 
 export const metadata = {
-  title: "Services | AeroVeld - Aerial & GIS Solutions",
+  title: "Services | Kgolo Agritech - AI & Blockchain Solutions",
   description:
-    "Comprehensive aerial surveying, GIS mapping, crop monitoring, and livestock tracking services for South African agriculture.",
+    "Comprehensive AI diagnostics, blockchain traceability, and GIS mapping services for South African agriculture.",
 }
 
 const services = [
   {
-    id: "aerial-mapping",
-    icon: Plane,
-    title: "Aerial Mapping & Surveying",
+    icon: Brain,
+    title: "AI Neural Vision Diagnostics",
     description:
-      "High-resolution drone-based mapping and surveying for accurate topographical data and farm planning.",
+      "Our Google Vertex-powered AI identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
     features: [
-      "Orthomosaic mapping with sub-centimeter accuracy",
-      "Digital Elevation Models (DEM) and terrain analysis",
-      "3D point cloud generation for volumetric measurements",
-      "Property boundary and infrastructure mapping",
-      "Construction and development site surveys",
-    ],
-    image: "/images/hero-drone.jpg",
-  },
-  {
-    id: "crop-monitoring",
-    icon: Leaf,
-    title: "Crop Health Monitoring",
-    description:
-      "Advanced multispectral and NDVI imaging to monitor crop health, detect stress, and optimize inputs.",
-    features: [
-      "NDVI vegetation index analysis",
-      "Early disease and pest detection",
-      "Irrigation efficiency assessment",
-      "Fertilizer application optimization",
-      "Yield prediction and harvest planning",
+      "FMD lesion detection with 95%+ accuracy",
+      "Crop pest identification (Fall Armyworm)",
+      "Nutrient deficiency analysis",
+      "Real-time diagnostic reports",
     ],
     image: "/images/crop-monitoring.jpg",
   },
   {
-    id: "livestock-tracking",
-    icon: Radio,
-    title: "Livestock Tracking & Management",
+    icon: Shield,
+    title: "Blockchain Health Passports",
     description:
-      "Aerial surveillance and GPS tracking solutions for efficient livestock monitoring across large areas.",
+      "Every vaccination and movement is a permanent record on a private blockchain, meeting WOAH international audit standards.",
     features: [
-      "Real-time herd location tracking",
-      "Automated animal counting and identification",
-      "Grazing pattern analysis",
-      "Fence line and boundary monitoring",
-      "Predator and threat detection alerts",
-    ],
-    image: "/images/livestock-tracking.jpg",
-  },
-  {
-    id: "gis-analytics",
-    icon: MapPin,
-    title: "GIS Data Analytics",
-    description:
-      "Powerful geographic information system analysis for informed decision-making and strategic planning.",
-    features: [
-      "Spatial data integration and management",
-      "Custom map layer creation and analysis",
-      "Historical data comparison and trends",
-      "Environmental impact assessments",
-      "Land use and zoning analysis",
+      "Immutable vaccination records",
+      "Movement tracking and traceability",
+      "WOAH audit compliance",
+      "Export certification support",
     ],
     image: "/images/gis-mapping.jpg",
+  },
+  {
+    icon: Wifi,
+    title: "Edge-Sync Technology",
+    description:
+      "Engineered for the Northern Cape. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
+    features: [
+      "Zero-data offline mode",
+      "Automatic sync when connected",
+      "Local data encryption",
+      "Rural-optimized performance",
+    ],
+    image: "/images/livestock-tracking.jpg",
   },
 ]
 
 const additionalServices = [
   {
-    icon: Satellite,
-    title: "Satellite Integration",
-    description: "Combine drone data with satellite imagery for comprehensive coverage and historical analysis.",
+    icon: Smartphone,
+    title: "Mobile App Platform",
+    description: "User-friendly mobile application for field diagnostics and record keeping.",
   },
   {
-    icon: Camera,
-    title: "Thermal Imaging",
-    description: "Detect irrigation issues, livestock health problems, and equipment malfunctions with thermal cameras.",
-  },
-  {
-    icon: FileSearch,
-    title: "Custom Reports",
-    description: "Receive detailed analysis reports tailored to your specific farm management needs.",
+    icon: Database,
+    title: "LITS Integration",
+    description: "Seamless integration with the national Livestock Identification and Traceability System.",
   },
   {
     icon: BarChart3,
-    title: "Data Dashboard",
-    description: "Access your farm data through our intuitive web and mobile dashboard platform.",
+    title: "Analytics Dashboard",
+    description: "Comprehensive reporting and analytics for herd health and compliance monitoring.",
   },
 ]
 
@@ -115,7 +87,7 @@ export default function ServicesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
@@ -125,109 +97,101 @@ export default function ServicesPage() {
               className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Comprehensive Aerial & GIS Solutions
+              Technology Solutions for Modern Agriculture
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              From high-resolution aerial mapping to real-time livestock tracking, we offer a
-              complete suite of precision agriculture services tailored for South African farms.
+            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+              From AI-powered diagnostics to blockchain traceability, we provide the complete 
+              technology stack for biosecurity compliance and agricultural excellence.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Detail Sections */}
-      {services.map((service, index) => (
-        <section
-          key={service.id}
-          id={service.id}
-          className={`py-16 lg:py-24 ${index % 2 === 1 ? "bg-secondary" : ""}`}
-        >
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                index % 2 === 1 ? "lg:flex-row-reverse" : ""
-              }`}
-            >
-              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <service.icon className="h-6 w-6 text-primary" />
+      {/* Main Services */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="space-y-24">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}
+              >
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <service.icon className="h-8 w-8 text-primary" />
                   </div>
                   <h2
-                    className="text-2xl font-bold tracking-tight sm:text-3xl"
+                    className="text-3xl font-bold mb-4"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {service.title}
                   </h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-3">
+                        <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                          <Check className="h-4 w-4 text-primary" />
+                        </div>
+                        <span className="text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild>
+                    <Link href="/contact">
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild>
-                  <Link href="/contact">
-                    Get a Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <Image
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-primary/10" />
                 </div>
               </div>
-            </div>
+            ))}
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       {/* Additional Services */}
-      <section className="py-24 lg:py-32 bg-secondary">
+      <section className="py-20 lg:py-28 bg-secondary">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Additional Capabilities
-            </p>
             <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Enhanced Services & Features
+              Additional Capabilities
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Complement our core services with these additional capabilities for a complete farm
-              intelligence solution.
+            <p className="mt-4 text-lg text-muted-foreground">
+              Complementary services that enhance your agricultural operations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {additionalServices.map((service) => (
-              <Card key={service.title} className="border-border">
-                <CardHeader className="pb-2">
-                  <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                    <service.icon className="h-5 w-5 text-primary" />
+              <Card key={service.title} className="border-border bg-card">
+                <CardContent className="p-8">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                    <service.icon className="h-7 w-7 text-primary" />
                   </div>
-                  <CardTitle
-                    className="text-lg"
+                  <h3
+                    className="text-xl font-semibold mb-3"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{service.description}</p>
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -236,25 +200,30 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="bg-primary rounded-2xl py-16 px-8 md:py-20 md:px-16 text-center">
+          <div className="rounded-3xl bg-primary p-12 md:p-16 text-center">
             <h2
-              className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance"
+              className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Not Sure Which Service You Need?
+              Ready to Transform Your Operations?
             </h2>
             <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-              Our agricultural specialists will assess your farm and recommend the perfect
-              combination of services to meet your goals.
+              Get in touch to discuss how our technology can help you achieve compliance 
+              and operational excellence.
             </p>
-            <div className="mt-8">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">
-                  Schedule Free Assessment
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <Link href="/contact">Request a Demo</Link>
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="bg-transparent text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                asChild
+              >
+                <Link href="/solutions">View Solutions</Link>
               </Button>
             </div>
           </div>

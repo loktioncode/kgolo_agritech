@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -21,38 +22,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <svg
-              className="h-8 w-8 text-primary"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 2L2 9L16 16L30 9L16 2Z"
-                fill="currentColor"
-                fillOpacity="0.2"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 23L16 30L30 23"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 16L16 23L30 16"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-              AeroVeld
-            </span>
-          </div>
+          <Logo className="h-9 w-9" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -73,7 +43,7 @@ export function Header() {
             <Link href="/contact">Get a Quote</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/contact">Book Demo</Link>
+            <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
 
@@ -105,7 +75,7 @@ export function Header() {
                 </Button>
                 <Button asChild>
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    Book Demo
+                    Contact Us
                   </Link>
                 </Button>
               </div>

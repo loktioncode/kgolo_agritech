@@ -3,210 +3,112 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent } from "@/components/ui/card"
 import {
-  ArrowRight,
-  Wheat,
   Beef,
-  GrapeIcon,
-  TreeDeciduous,
+  Leaf,
+  Grape,
+  TreePine,
+  ArrowRight,
   TrendingUp,
+  Shield,
   Clock,
-  DollarSign,
-  Droplets,
-  Bug,
-  BarChart3,
 } from "lucide-react"
 
 export const metadata = {
-  title: "Solutions | AeroVeld - Industry-Specific Agricultural Solutions",
+  title: "Solutions | Kgolo Agritech - Industry-Specific Agricultural Solutions",
   description:
-    "Tailored aerial and GIS solutions for crop farming, livestock management, viticulture, and more across South Africa.",
+    "Tailored AI and blockchain solutions for livestock, crop farming, viticulture, and forestry across South Africa.",
 }
 
-const industries = [
+const solutions = [
   {
-    id: "crops",
-    icon: Wheat,
-    title: "Crop Farming",
-    description:
-      "Comprehensive monitoring and analytics for grain, vegetable, and field crop operations.",
-    image: "/images/crop-monitoring.jpg",
-    challenges: [
-      "Early detection of crop stress and disease",
-      "Optimizing irrigation and fertilizer application",
-      "Accurate yield prediction and harvest planning",
-      "Soil health monitoring and management",
-    ],
-    solutions: [
-      {
-        title: "NDVI Health Mapping",
-        description: "Regular multispectral flights to monitor crop vigor and identify problem areas.",
-      },
-      {
-        title: "Variable Rate Prescriptions",
-        description: "Generate precise application maps for fertilizer, pesticides, and water.",
-      },
-      {
-        title: "Yield Forecasting",
-        description: "AI-powered predictions based on historical and real-time data.",
-      },
-    ],
-  },
-  {
-    id: "livestock",
     icon: Beef,
     title: "Livestock & Game",
+    subtitle: "FMD Compliance & Traceability",
     description:
-      "Advanced tracking and monitoring for cattle ranches, game farms, and mixed operations.",
+      "Complete biosecurity solution for cattle, sheep, and game farmers. Achieve LITS compliance and unlock export markets with our blockchain health passports.",
+    features: [
+      "FMD lesion AI detection",
+      "LITS registration automation",
+      "Section 10 scheme support",
+      "Movement permit integration",
+      "Vaccination tracking",
+    ],
+    stats: { value: "7.2M", label: "Cattle in SA" },
     image: "/images/livestock-tracking.jpg",
-    challenges: [
-      "Monitoring animals across vast terrain",
-      "Preventing livestock theft and predation",
-      "Managing grazing patterns and carrying capacity",
-      "Wildlife census and biodiversity tracking",
-    ],
-    solutions: [
-      {
-        title: "Aerial Herd Surveys",
-        description: "Regular drone flights for accurate animal counting and health assessment.",
-      },
-      {
-        title: "GPS Tracking Integration",
-        description: "Combine aerial data with GPS collars for comprehensive herd management.",
-      },
-      {
-        title: "Boundary Monitoring",
-        description: "Automated fence line inspection and breach detection.",
-      },
-    ],
   },
   {
-    id: "viticulture",
-    icon: GrapeIcon,
+    icon: Leaf,
+    title: "Crop Farming",
+    subtitle: "Pest Detection & Export Compliance",
+    description:
+      "AI-powered crop health monitoring for commercial and emerging farmers. Detect pests early and maintain export-grade produce quality.",
+    features: [
+      "Fall Armyworm detection",
+      "Nutrient deficiency analysis",
+      "Harvest optimization",
+      "Residue tracking",
+      "Export certification",
+    ],
+    stats: { value: "R150bn", label: "Annual Crop Value" },
+    image: "/images/crop-monitoring.jpg",
+    launching: "July 2026",
+  },
+  {
+    icon: Grape,
     title: "Viticulture",
+    subtitle: "Vineyard Health Management",
     description:
-      "Precision solutions for wine estates and vineyards in the Western Cape and beyond.",
+      "Specialized solutions for wine grape producers. Monitor vine health, predict yields, and maintain quality standards for premium wine production.",
+    features: [
+      "Vine disease detection",
+      "Yield prediction",
+      "Irrigation optimization",
+      "Quality grading",
+      "Terroir mapping",
+    ],
+    stats: { value: "3,000+", label: "Wine Farms" },
     image: "/images/gis-mapping.jpg",
-    challenges: [
-      "Vine-by-vine health monitoring",
-      "Water stress and irrigation optimization",
-      "Disease and pest early warning",
-      "Harvest timing and quality prediction",
-    ],
-    solutions: [
-      {
-        title: "Block-Level Analysis",
-        description: "Detailed mapping of vineyard blocks for targeted management decisions.",
-      },
-      {
-        title: "Thermal Imaging",
-        description: "Identify water stress and irrigation issues before visible symptoms appear.",
-      },
-      {
-        title: "Quality Zoning",
-        description: "Map vigor zones to optimize harvest timing and wine quality.",
-      },
-    ],
+    launching: "2027",
   },
   {
-    id: "forestry",
-    icon: TreeDeciduous,
-    title: "Forestry & Timber",
+    icon: TreePine,
+    title: "Forestry",
+    subtitle: "Plantation Monitoring",
     description:
-      "Sustainable forest management through accurate mapping and monitoring solutions.",
-    image: "/images/hero-drone.jpg",
-    challenges: [
-      "Inventory and timber volume estimation",
-      "Fire risk assessment and monitoring",
-      "Illegal logging and encroachment detection",
-      "Reforestation progress tracking",
+      "Large-scale forest health monitoring for timber and pulp operations. Early pest detection and growth tracking for sustainable forestry.",
+    features: [
+      "Aerial health surveys",
+      "Pest outbreak alerts",
+      "Growth rate analysis",
+      "Fire risk assessment",
+      "Carbon tracking",
     ],
-    solutions: [
-      {
-        title: "Forest Inventory",
-        description: "3D mapping for accurate tree counting and volume estimation.",
-      },
-      {
-        title: "Change Detection",
-        description: "Regular monitoring to identify unauthorized activities or natural damage.",
-      },
-      {
-        title: "Fire Risk Mapping",
-        description: "Identify high-risk areas and plan firebreaks effectively.",
-      },
-    ],
+    stats: { value: "1.2M ha", label: "Commercial Forests" },
+    image: "/images/about-hero.jpg",
+    launching: "2027",
   },
 ]
 
 const caseStudies = [
   {
-    title: "Western Cape Wine Estate",
-    industry: "Viticulture",
-    challenge: "A 500-hectare wine estate struggled with inconsistent grape quality across blocks.",
-    solution:
-      "Implemented weekly NDVI flights and thermal imaging to create management zones.",
-    results: [
-      "23% improvement in grape quality consistency",
-      "15% reduction in water usage",
-      "R1.2M annual savings in input costs",
-    ],
-    image: "/images/gis-mapping.jpg",
-  },
-  {
-    title: "Free State Cattle Ranch",
-    industry: "Livestock",
-    challenge: "A 12,000-hectare ranch faced challenges in monitoring 3,000+ head of cattle.",
-    solution:
-      "Deployed monthly aerial surveys combined with GPS collar integration for real-time tracking.",
-    results: [
-      "95% reduction in cattle losses",
-      "40% improvement in grazing efficiency",
-      "80% faster head counts during musters",
-    ],
-    image: "/images/livestock-tracking.jpg",
-  },
-  {
-    title: "Mpumalanga Maize Farm",
-    industry: "Crop Farming",
-    challenge:
-      "A commercial maize operation needed to optimize fertilizer use across 2,000 hectares.",
-    solution:
-      "Created variable rate application maps based on multispectral analysis and soil data.",
-    results: [
-      "18% increase in average yield",
-      "25% reduction in fertilizer costs",
-      "ROI achieved within first season",
-    ],
-    image: "/images/crop-monitoring.jpg",
-  },
-]
-
-const benefits = [
-  {
+    title: "Northern Cape Cattle Farm",
+    result: "100% LITS Compliance",
+    description: "Achieved full traceability for 2,500 head of cattle within 3 months.",
     icon: TrendingUp,
-    title: "Increased Yields",
-    value: "15-25%",
-    description: "Average yield improvement through precision management",
   },
   {
-    icon: DollarSign,
-    title: "Cost Reduction",
-    value: "20-30%",
-    description: "Savings on inputs through targeted application",
+    title: "Free State Grain Producer",
+    result: "23% Yield Increase",
+    description: "Early pest detection prevented significant crop losses.",
+    icon: Shield,
   },
   {
+    title: "Limpopo Game Reserve",
+    result: "Export Ready",
+    description: "Blockchain health records enabled first international game export.",
     icon: Clock,
-    title: "Time Savings",
-    value: "60%",
-    description: "Reduction in scouting and monitoring time",
-  },
-  {
-    icon: Droplets,
-    title: "Water Efficiency",
-    value: "25%",
-    description: "Average reduction in irrigation water usage",
   },
 ]
 
@@ -216,7 +118,7 @@ export default function SolutionsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
@@ -226,199 +128,73 @@ export default function SolutionsPage() {
               className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Tailored Solutions for Every Agricultural Challenge
+              Industry-Specific Solutions for Every Farmer
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Whether you grow crops, raise livestock, or manage forests, we have specialized
-              solutions designed to address your unique challenges and maximize your returns.
+            <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
+              Whether you manage livestock, grow crops, or cultivate vineyards, we have 
+              tailored technology solutions to meet your specific needs.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Benefits Strip */}
-      <section className="bg-secondary py-12">
+      {/* Solutions Grid */}
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="text-center">
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                  <benefit.icon className="h-6 w-6 text-primary" />
-                </div>
-                <p
-                  className="text-2xl font-bold text-primary"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {benefit.value}
-                </p>
-                <p className="font-medium text-sm">{benefit.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Industry Solutions */}
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Industry Solutions
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Solutions by Industry
-            </h2>
-          </div>
-
-          <Tabs defaultValue="crops" className="w-full">
-            <TabsList className="w-full flex-wrap h-auto gap-2 bg-transparent justify-center mb-12">
-              {industries.map((industry) => (
-                <TabsTrigger
-                  key={industry.id}
-                  value={industry.id}
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-3 rounded-lg border border-border"
-                >
-                  <industry.icon className="h-4 w-4 mr-2" />
-                  {industry.title}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {industries.map((industry) => (
-              <TabsContent key={industry.id} value={industry.id}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <industry.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3
-                        className="text-2xl font-bold"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {industry.title}
-                      </h3>
-                    </div>
-                    <p className="text-muted-foreground mb-6">{industry.description}</p>
-
-                    <div className="mb-8">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <Bug className="h-4 w-4 text-primary" />
-                        Common Challenges
-                      </h4>
-                      <ul className="space-y-2">
-                        {industry.challenges.map((challenge) => (
-                          <li key={challenge} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                            {challenge}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <BarChart3 className="h-4 w-4 text-primary" />
-                        Our Solutions
-                      </h4>
-                      <div className="space-y-4">
-                        {industry.solutions.map((solution) => (
-                          <div key={solution.title} className="bg-secondary rounded-lg p-4">
-                            <h5 className="font-medium mb-1">{solution.title}</h5>
-                            <p className="text-sm text-muted-foreground">{solution.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-8">
-                      <Button asChild>
-                        <Link href="/contact">
-                          Discuss Your Needs
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                    <Image
-                      src={industry.image || "/placeholder.svg"}
-                      alt={industry.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section id="case-studies" className="py-24 lg:py-32 bg-secondary">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
-              Success Stories
-            </p>
-            <h2
-              className="text-3xl font-bold tracking-tight sm:text-4xl text-balance"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Real Results from Real Farms
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              See how South African farmers are achieving measurable improvements with AeroVeld.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden border-border">
-                <div className="relative aspect-[16/9]">
-                  <Image src={study.image || "/placeholder.svg"} alt={study.title} fill className="object-cover" />
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {solutions.map((solution) => (
+              <Card key={solution.title} className="border-border overflow-hidden">
+                <div className="relative h-48">
+                  <Image
+                    src={solution.image || "/placeholder.svg"}
+                    alt={solution.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-foreground/40" />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                      {study.industry}
-                    </span>
+                    <div className="h-12 w-12 rounded-xl bg-background/90 flex items-center justify-center">
+                      <solution.icon className="h-6 w-6 text-primary" />
+                    </div>
                   </div>
+                  {solution.launching && (
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-accent text-accent-foreground text-sm font-medium rounded-full">
+                      Launching {solution.launching}
+                    </div>
+                  )}
                 </div>
-                <CardHeader>
-                  <CardTitle style={{ fontFamily: "var(--font-display)" }}>
-                    {study.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <p className="text-xs font-medium uppercase text-muted-foreground mb-1">
-                      Challenge
-                    </p>
-                    <p className="text-sm">{study.challenge}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase text-muted-foreground mb-1">
-                      Solution
-                    </p>
-                    <p className="text-sm">{study.solution}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium uppercase text-muted-foreground mb-2">
-                      Results
-                    </p>
-                    <ul className="space-y-1">
-                      {study.results.map((result) => (
-                        <li key={result} className="text-sm flex items-center gap-2 text-primary font-medium">
-                          <TrendingUp className="h-3 w-3" />
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
+                <CardContent className="p-8">
+                  <p className="text-sm font-medium text-primary mb-2">{solution.subtitle}</p>
+                  <h3
+                    className="text-2xl font-bold mb-3"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {solution.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {solution.description}
+                  </p>
+                  <ul className="grid grid-cols-2 gap-2 mb-6">
+                    {solution.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-sm">
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-center justify-between pt-6 border-t border-border">
+                    <div>
+                      <p className="text-2xl font-bold text-primary" style={{ fontFamily: "var(--font-display)" }}>
+                        {solution.stats.value}
+                      </p>
+                      <p className="text-sm text-muted-foreground">{solution.stats.label}</p>
+                    </div>
+                    <Button variant="outline" asChild>
+                      <Link href="/contact">
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -427,30 +203,72 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 lg:py-32">
+      {/* Case Studies */}
+      <section id="case-studies" className="py-20 lg:py-28 bg-secondary">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="bg-foreground rounded-2xl py-16 px-8 md:py-20 md:px-16 text-center">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-sm font-medium uppercase tracking-wider text-primary mb-4">
+              Success Stories
+            </p>
             <h2
-              className="text-3xl font-bold tracking-tight text-background sm:text-4xl text-balance"
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Ready to See Similar Results?
+              Real Results from South African Farmers
             </h2>
-            <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
-              Book a consultation with our agricultural specialists to discuss how our solutions
-              can be tailored to your specific operation.
+            <p className="mt-4 text-lg text-muted-foreground">
+              See how farmers are achieving measurable improvements with Kgolo Agritech.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/contact">
-                  Schedule Consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-background/30 text-background hover:bg-background/10 hover:text-background bg-transparent" asChild>
-                <Link href="/services">View All Services</Link>
-              </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {caseStudies.map((study) => (
+              <Card key={study.title} className="border-border bg-card">
+                <CardContent className="p-8 text-center">
+                  <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                    <study.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <p className="text-3xl font-bold text-primary mb-2" style={{ fontFamily: "var(--font-display)" }}>
+                    {study.result}
+                  </p>
+                  <h3 className="text-lg font-semibold mb-3">{study.title}</h3>
+                  <p className="text-muted-foreground text-sm">{study.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative rounded-3xl overflow-hidden">
+            <Image
+              src="/images/hero-drone.jpg"
+              alt="South African farmland"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-foreground/80" />
+            <div className="relative z-10 py-20 px-8 md:py-28 md:px-16 text-center">
+              <h2
+                className="text-3xl font-bold tracking-tight text-background sm:text-4xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Find the Right Solution for Your Operation
+              </h2>
+              <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
+                Our team will help you identify the best technology package for your specific needs.
+              </p>
+              <div className="mt-10">
+                <Button size="lg" asChild>
+                  <Link href="/contact">
+                    Schedule a Consultation
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
