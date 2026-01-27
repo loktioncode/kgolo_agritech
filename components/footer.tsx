@@ -1,6 +1,13 @@
 import Link from "next/link"
-import { MapPin, Mail, Linkedin } from "lucide-react"
+import { MapPin, Mail, Linkedin, Phone } from "lucide-react"
 import { Logo } from "@/components/logo"
+
+const navLinks = [
+  { name: "Services", href: "/services" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+]
 
 const quickLinks = [
   { name: "Terms of Service", href: "/terms" },
@@ -11,7 +18,7 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-background">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-4">
           {/* Mission Statement */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
@@ -26,10 +33,29 @@ export function Footer() {
             </p>
           </div>
 
+          {/* Navigation Links */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-background/50">
+              Navigation
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-background/70 transition-colors hover:text-background"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-background/50">
-              Quick Links
+              Legal
             </h3>
             <ul className="mt-4 space-y-3">
               {quickLinks.map((link) => (
@@ -54,6 +80,12 @@ export function Footer() {
               <div className="flex items-start gap-2 text-sm text-background/70">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
                 <span>Kimberley, Northern Cape<br />South Africa</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-background/70">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+27697919811" className="hover:text-background transition-colors">
+                  +27 69 791 9811
+                </a>
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Mail className="h-4 w-4" />
