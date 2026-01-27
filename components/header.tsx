@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from "@/components/ui/sheet"
 import { Menu, ChevronRight } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { cn } from "@/lib/utils"
@@ -66,22 +66,25 @@ export function Header() {
               <span className="sr-only">Open menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0 border-l border-border/50">
+          <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0 border-l border-border/50">
             <div className="flex flex-col h-full bg-background">
-              <div className="p-8 border-b border-border/50">
-                <div className="flex items-center justify-between mb-2">
+              <SheetHeader className="p-8 border-b border-border/50 text-left">
+                <div className="flex items-center justify-between mb-4">
                   <Logo className="h-8 w-8" />
-                  <SheetTitle className="text-sm font-bold text-primary uppercase tracking-widest">
-
-                  </SheetTitle>
+                  <div className="px-2 py-0.5 rounded bg-primary/10 text-[10px] font-bold text-primary uppercase tracking-widest">
+                    V1.0
+                  </div>
                 </div>
-                <SheetDescription className="text-xs text-muted-foreground">
-                  Navigate through our digital agricultural ecosystem.
+                <SheetTitle className="text-2xl font-bold tracking-tight">
+                  Navigation
+                </SheetTitle>
+                <SheetDescription className="text-sm text-muted-foreground leading-relaxed">
+                  Explore Kgolo Agritech's digital solutions and company journey.
                 </SheetDescription>
-              </div>
+              </SheetHeader>
 
-              <nav className="flex-1 px-4 py-8">
-                <div className="space-y-3">
+              <nav className="flex-1 px-8 py-8 overflow-y-auto">
+                <div className="space-y-2">
                   {navigation.map((item) => {
                     const isActive = pathname === item.href
                     return (
@@ -96,7 +99,7 @@ export function Header() {
                             : "text-muted-foreground hover:bg-secondary hover:text-foreground hover:translate-x-1"
                         )}
                       >
-                        <span className="text-xl font-semibold tracking-tight">{item.name}</span>
+                        <span className="text-xl font-bold tracking-tight">{item.name}</span>
                         <ChevronRight className={cn(
                           "h-5 w-5 transition-all duration-300",
                           isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
@@ -107,16 +110,16 @@ export function Header() {
                 </div>
               </nav>
 
-              <div className="p-8 bg-secondary/30 border-t border-border/50">
+              <div className="px-8 py-8 bg-secondary/30 border-t border-border/50">
                 <div className="grid gap-4">
                   <Button className="w-full justify-center shadow-xl shadow-primary/20 h-14 text-lg font-bold rounded-2xl" asChild>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
                       Get Started
                     </Link>
                   </Button>
-                  <Button variant="outline" className="w-full justify-center h-14 text-lg font-semibold rounded-2xl bg-background" asChild>
+                  <Button variant="outline" className="w-full justify-center h-14 text-lg font-semibold rounded-2xl bg-background border-border/50" asChild>
                     <Link href="/solutions" onClick={() => setIsOpen(false)}>
-                      View Solutions
+                      Explore Solutions
                     </Link>
                   </Button>
                 </div>
