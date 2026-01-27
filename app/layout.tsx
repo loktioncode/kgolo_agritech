@@ -12,23 +12,10 @@ export const metadata: Metadata = {
   description: 'Powering South Africa\'s 2026 FMD recovery through AI diagnostics and Blockchain traceability. We turn livestock and crops into verified, bankable assets.',
   keywords: ['Kgolo Agritech', 'FMD recovery', 'livestock traceability', 'blockchain', 'AI diagnostics', 'LITS compliance', 'South Africa', 'biosecurity'],
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/crop-logo.svg',
+    apple: '/crop-logo.svg',
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({

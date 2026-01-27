@@ -39,9 +39,6 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-4">
-          <Button variant="outline" size="sm" asChild>
-            <Link href="/contact">Get a Quote</Link>
-          </Button>
           <Button size="sm" asChild>
             <Link href="/contact">Contact Us</Link>
           </Button>
@@ -68,11 +65,6 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border">
-                <Button variant="outline" asChild>
-                  <Link href="/contact" onClick={() => setIsOpen(false)}>
-                    Get a Quote
-                  </Link>
-                </Button>
                 <Button asChild>
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
                     Contact Us

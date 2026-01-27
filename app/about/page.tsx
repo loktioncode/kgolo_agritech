@@ -98,7 +98,7 @@ export default function AboutPage() {
                 precision farming is the key to sustainable food security.
               </p>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-                Our name "Kgolo" means "growth" in Setswana, reflecting our commitment to 
+                Our name "Kgolo" means "growth" in Setswana, reflecting our commitment to
                 helping South African agriculture grow and thrive in the digital age.
               </p>
             </div>
@@ -130,8 +130,8 @@ export default function AboutPage() {
                   Our Mission
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  To empower South African farmers with accessible, affordable technology 
-                  that ensures biosecurity compliance, unlocks export markets, and creates 
+                  To empower South African farmers with accessible, affordable technology
+                  that ensures biosecurity compliance, unlocks export markets, and creates
                   verified, bankable agricultural assets.
                 </p>
               </CardContent>
@@ -148,8 +148,8 @@ export default function AboutPage() {
                   Our Vision
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  A South Africa where every farmer, from smallholder to commercial operation, 
-                  has the digital tools to prove the health and quality of their produce, 
+                  A South Africa where every farmer, from smallholder to commercial operation,
+                  has the digital tools to prove the health and quality of their produce,
                   accessing global markets with confidence.
                 </p>
               </CardContent>
@@ -197,7 +197,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 lg:py-28 bg-secondary">
+      <section id="our-journey" className="py-20 lg:py-28 bg-secondary">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2
@@ -217,9 +217,8 @@ export default function AboutPage() {
               {milestones.map((milestone, index) => (
                 <div
                   key={milestone.title}
-                  className={`flex flex-col md:flex-row gap-8 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className={`flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
                 >
                   <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
                     <Card className="border-border bg-card inline-block">

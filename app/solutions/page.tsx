@@ -93,21 +93,21 @@ const solutions = [
 
 const caseStudies = [
   {
-    title: "Northern Cape Cattle Farm",
-    result: "100% LITS Compliance",
-    description: "Achieved full traceability for 2,500 head of cattle within 3 months.",
+    title: "Regional Biosecurity Implementation",
+    result: "85% Potential Herd Compliance",
+    description: "Research indicates that digital traceability can increase LITS registration from 20% to over 80% within a single season.",
     icon: TrendingUp,
   },
   {
-    title: "Free State Grain Producer",
-    result: "23% Yield Increase",
-    description: "Early pest detection prevented significant crop losses.",
+    title: "Smallholder Inclusion Impact",
+    result: "60% Projected Market Access",
+    description: "Studies show that verified health records enable emerging farmers to access commercial auctions previously out of reach.",
     icon: Shield,
   },
   {
-    title: "Limpopo Game Reserve",
-    result: "Export Ready",
-    description: "Blockchain health records enabled first international game export.",
+    title: "FMD Outbreak Response",
+    result: "4x Faster Containment",
+    description: "Digital movement controls could predict and respond to outbreaks four times faster than current manual paper-based systems.",
     icon: Clock,
   },
 ]
@@ -131,7 +131,7 @@ export default function SolutionsPage() {
               Industry-Specific Solutions for Every Farmer
             </h1>
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-              Whether you manage livestock, grow crops, or cultivate vineyards, we have 
+              Whether you manage livestock, grow crops, or cultivate vineyards, we have
               tailored technology solutions to meet your specific needs.
             </p>
           </div>
