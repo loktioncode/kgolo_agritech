@@ -102,6 +102,9 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="max-w-3xl">
+            <p className="text-lg text-accent font-medium italic mb-4">
+              "Innovating Agriculture for Tomorrow"
+            </p>
             <h1
               className="text-4xl font-bold tracking-tight text-background sm:text-5xl lg:text-6xl text-balance"
               style={{ fontFamily: "var(--font-display)" }}

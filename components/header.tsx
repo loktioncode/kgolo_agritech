@@ -8,11 +8,11 @@ import { Menu } from "lucide-react"
 import { Logo } from "@/components/logo"
 
 const navigation = [
-  { name: "Technology", href: "/#technology" },
-  { name: "Our Impact", href: "/#impact" },
-  { name: "Livestock Module", href: "/#livestock" },
-  { name: "Crop Module", href: "/#crops" },
-  { name: "Investor Portal", href: "/#investor" },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Header() {
@@ -39,8 +39,11 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-4">
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/contact">Get a Quote</Link>
+          </Button>
           <Button size="sm" asChild>
-            <Link href="#get-app">Get the App</Link>
+            <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
 
@@ -65,9 +68,14 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border">
+                <Button variant="outline" asChild>
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    Get a Quote
+                  </Link>
+                </Button>
                 <Button asChild>
-                  <Link href="#get-app" onClick={() => setIsOpen(false)}>
-                    Get the App
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    Contact Us
                   </Link>
                 </Button>
               </div>
