@@ -10,8 +10,8 @@ const navLinks = [
 ]
 
 const quickLinks = [
-  { name: "Terms of Service", href: "/terms" },
-  { name: "Privacy Policy / POPIA Notice", href: "/privacy" },
+  { name: "Terms of Service", href: "/legal" },
+  { name: "Privacy Policy / POPIA Notice", href: "/legal" },
 ]
 
 export function Footer() {
@@ -28,7 +28,7 @@ export function Footer() {
               "Innovating Agriculture for Tomorrow"
             </p>
             <p className="mt-3 text-sm text-background/70 max-w-xs leading-relaxed">
-              Powering South Africa's agricultural future through AI diagnostics and blockchain 
+              Powering South Africa's agricultural future through AI diagnostics and blockchain
               traceability, turning livestock and crops into verified, bankable assets.
             </p>
           </div>
