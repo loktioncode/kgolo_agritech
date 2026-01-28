@@ -18,9 +18,9 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
-  title: "About Us | Kgolo Agritech - Innovating Agriculture for Tomorrow",
+  title: "About Us | Kgolo Agritech - Our Journey & Mission",
   description:
-    "Learn about Kgolo Agritech's mission to transform South African agriculture through AI and blockchain technology.",
+    "Discover how Kgolo Agritech is transforming South African agriculture through AI diagnostics and blockchain traceability. Our story, values, and 2026 roadmap.",
 }
 
 const values = [
@@ -117,7 +117,7 @@ export default function AboutPage() {
             <FadeIn direction="left" delay={0.6} className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/about-hero.jpg"
-                alt="South African farmland"
+                alt="South African farmland - Representative of Kgolo Agritech's agricultural focus"
                 fill
                 className="object-cover"
               />

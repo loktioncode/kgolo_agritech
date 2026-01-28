@@ -14,6 +14,12 @@ import {
 import { FadeIn } from "@/components/animations/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
 import { MeshBackground } from "@/components/ui/mesh-background"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact Us | Kgolo Agritech - Get in Touch",
+  description: "Contact Kgolo Agritech in Kimberley, Northern Cape. We're here to help South African farmers with AI and blockchain agricultural solutions.",
+}
 
 const contactInfo = [
   {

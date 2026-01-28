@@ -19,9 +19,9 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
-  title: "Services | Kgolo Agritech - AI & Blockchain Solutions",
+  title: "Agritech Services | AI Diagnostics & Blockchain Traceability",
   description:
-    "Comprehensive AI diagnostics, blockchain traceability, and GIS mapping services for South African agriculture.",
+    "Explore our technological services including AI-powered FMD detection, blockchain health passports, and edge-sync offline-first data solutions.",
 }
 
 const services = [
@@ -94,7 +94,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-drone.jpg"
-            alt="South African green farmland"
+            alt="South African green farmland viewed from a drone - Kgolo Agritech Expertise"
             fill
             className="object-cover opacity-70"
             priority
