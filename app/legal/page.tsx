@@ -4,6 +4,12 @@ import { Footer } from "@/components/footer"
 import { Shield, Gavel, ExternalLink } from "lucide-react"
 import { FadeIn } from "@/components/animations/fade-in"
 import { MeshBackground } from "@/components/ui/mesh-background"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Legal Information | Kgolo Agritech - POPIA & Terms",
+    description: "Legal information, Terms of Service, and POPIA notice for Kgolo (Pty) Ltd, a South African agritech company.",
+}
 
 export default function LegalPage() {
     return (
