@@ -75,12 +75,6 @@ export function Header() {
                     V1.0
                   </div>
                 </div>
-                <SheetTitle className="text-2xl font-bold tracking-tight">
-                  Navigation
-                </SheetTitle>
-                <SheetDescription className="text-sm text-muted-foreground leading-relaxed">
-                  Explore Kgolo Agritech's digital solutions and company journey.
-                </SheetDescription>
               </SheetHeader>
 
               <nav className="flex-1 px-8 py-8 overflow-y-auto">
