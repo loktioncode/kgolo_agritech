@@ -54,18 +54,23 @@ const milestones = [
   },
   {
     year: "2025",
+    title: "AI R&D & Field Testing",
+    description: "Extensive development of our Google Vertex-powered AI and field testing with Northern Cape cattle farmers.",
+  },
+  {
+    year: "2026",
     title: "MVP Launch",
-    description: "Launched our Minimum Viable Product for livestock traceability in the Northern Cape.",
+    description: "Official launch of our Minimum Viable Product for livestock biosecurity and traceability.",
   },
   {
     year: "2026",
     title: "LITS Integration",
-    description: "Full integration with national LITS system ahead of January mandate deadline.",
+    description: "Full integration with the national LITS system to streamline biosecurity compliance.",
   },
   {
-    year: "2026",
+    year: "2027",
     title: "Crop Module",
-    description: "Launching crop health monitoring module in July 2026.",
+    description: "Expanding our digital ledger to include crop health monitoring and export compliance.",
   },
 ]
 

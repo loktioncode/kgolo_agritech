@@ -31,18 +31,21 @@ const problemCards = [
         title: "Export Bans",
         description:
             "The R80bn beef industry is locked out of global markets due to trust gaps in paper records.",
+        image: "/images/export-bans-bg.png",
     },
     {
         icon: Clock,
         title: "Traceability Lapses",
         description:
             "Current LITS registration is too slow for the January 2026 mandate.",
+        image: "/images/traceability-lapses-bg.png",
     },
     {
         icon: Users,
         title: "Smallholder Exclusion",
         description:
             "Emerging farmers lack the tech to prove their herd's health status.",
+        image: "/images/smallholder-exclusion-bg.png",
     },
 ]
 
@@ -52,7 +55,7 @@ const techStack = [
         title: "AI Neural Vision",
         description:
             "Our Google Vertex-powered AI identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
-        image: "/images/crop-monitoring.jpg",
+        image: "/images/cattle-fmd-ai.png",
     },
     {
         icon: Shield,
@@ -177,19 +180,30 @@ export function HomeClient() {
                         {problemCards.map((card) => (
                             <StaggerItem key={card.title}>
                                 <Card
-                                    className="border-border bg-card hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all"
+                                    className="relative border-border bg-card hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden group min-h-[320px]"
                                 >
-                                    <CardContent className="p-8">
-                                        <div className="h-14 w-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-6">
+                                    {/* Background Image */}
+                                    <div className="absolute inset-0 z-0">
+                                        <Image
+                                            src={card.image || "/placeholder.svg"}
+                                            alt={card.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-foreground/80 group-hover:bg-foreground/70 transition-colors" />
+                                    </div>
+
+                                    <CardContent className="relative z-10 p-8 flex flex-col h-full items-start">
+                                        <div className="h-14 w-14 rounded-xl bg-destructive/20 flex items-center justify-center mb-6">
                                             <card.icon className="h-7 w-7 text-destructive" />
                                         </div>
                                         <h3
-                                            className="text-xl font-semibold mb-3"
+                                            className="text-xl font-semibold mb-3 text-background"
                                             style={{ fontFamily: "var(--font-display)" }}
                                         >
                                             {card.title}
                                         </h3>
-                                        <p className="text-muted-foreground leading-relaxed">
+                                        <p className="text-background/80 leading-relaxed mb-auto">
                                             {card.description}
                                         </p>
                                     </CardContent>
@@ -307,7 +321,7 @@ export function HomeClient() {
                                         <div>
                                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
                                                 <Shield className="h-4 w-4" />
-                                                Active Now
+                                                Coming Soon
                                             </div>
                                             <h3
                                                 className="text-2xl font-bold mb-4"
@@ -352,7 +366,7 @@ export function HomeClient() {
                                         <div>
                                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 rounded-full text-accent-foreground text-sm font-medium mb-6">
                                                 <Leaf className="h-4 w-4" />
-                                                Launching July 2026
+                                                Launching January 2027
                                             </div>
                                             <h3
                                                 className="text-2xl font-bold mb-4"
