@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { MapPin, Mail, Linkedin, Phone } from "lucide-react"
+import { MapPin, Mail, Linkedin, Phone, Instagram } from "lucide-react"
 import { Logo } from "@/components/logo"
 
 const navLinks = [
@@ -97,6 +97,12 @@ export function Footer() {
                 <Linkedin className="h-4 w-4" />
                 <a href="https://linkedin.com/company/kgolo-agritech" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
                   LinkedIn
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-background/70">
+                <Instagram className="h-4 w-4" />
+                <a href="https://instagram.com/kgolo_agritech" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
+                  Instagram
                 </a>
               </div>
             </div>

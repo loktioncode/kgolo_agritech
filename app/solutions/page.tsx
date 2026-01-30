@@ -56,7 +56,7 @@ const solutions = [
     ],
     stats: { value: "R150bn", label: "Annual Crop Value" },
     image: "/images/crop-monitoring.jpg",
-    launching: "July 2026",
+    launching: "January 2027",
   },
   {
     icon: Grape,
