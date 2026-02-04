@@ -23,13 +23,13 @@ export function Logo({ className = "h-8 w-8", showText = true, variant = "defaul
       {showText && (
         <div className="flex flex-col leading-none">
           <span
-            className={`text-xl font-bold tracking-tight ${textColor}`}
+            className={`text-3xl font-bold tracking-tight ${textColor}`}
             style={{ fontFamily: 'var(--font-display)' }}
           >
             KGOLO
           </span>
           <span
-            className={`text-[10px] font-medium uppercase tracking-widest ${variant === "light" ? "text-background/70" : "text-muted-foreground"}`}
+            className={`text-[12px] font-medium uppercase tracking-widest ${variant === "light" ? "text-background/70" : "text-muted-foreground"}`}
           >
             AGRICULTURE
           </span>
