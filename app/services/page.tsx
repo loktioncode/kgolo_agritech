@@ -55,7 +55,7 @@ const services = [
     icon: Wifi,
     title: "Edge-Sync Technology",
     description:
-      "Engineered for the Northern Cape. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
+      "Engineered for the North West. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
     features: [
       "Zero-data offline mode",
       "Automatic sync when connected",

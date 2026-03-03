@@ -68,7 +68,7 @@ const techStack = [
         icon: Wifi,
         title: "Edge-Sync Technology",
         description:
-            "Engineered for the Northern Cape. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
+            "Engineered for the North West. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
         image: "/images/livestock-tracking.jpg",
     },
 ]
@@ -77,7 +77,6 @@ const complianceLogos = [
     { name: "SABS", label: "SABS Certified" },
     { name: "POPIA", label: "POPIA Compliant" },
     { name: "LITS", label: "LITS Compliant" },
-    { name: "DAERL", label: "Northern Cape DAERL" },
 ]
 
 const stats = [

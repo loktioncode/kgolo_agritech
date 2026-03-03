@@ -79,7 +79,7 @@ export function Footer() {
             <div className="mt-4 space-y-3">
               <div className="flex items-start gap-2 text-sm text-background/70">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>Kimberley, Northern Cape<br />South Africa</span>
+                <span>Taung, North West<br />South Africa</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Phone className="h-4 w-4" />

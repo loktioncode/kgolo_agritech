@@ -50,12 +50,12 @@ const milestones = [
   {
     year: "2024",
     title: "Founded",
-    description: "Kgolo Agritech was established in Kimberley with a vision to modernize South African agriculture.",
+    description: "Kgolo Agritech was established in Taung with a vision to modernize South African agriculture.",
   },
   {
     year: "2025",
     title: "AI R&D & Field Testing",
-    description: "Extensive development of our Google Vertex-powered AI and field testing with Northern Cape cattle farmers.",
+    description: "Extensive development of our Google Vertex-powered AI and field testing with North West cattle farmers.",
   },
   {
     year: "2026",
@@ -75,7 +75,7 @@ const milestones = [
 ]
 
 const stats = [
-  { value: "Northern Cape", label: "Headquarters" },
+  { value: "North West", label: "Headquarters" },
   { value: "2024", label: "Founded" },
   { value: "R300k", label: "Phase 1 Target" },
   { value: "100%", label: "SA Owned" },
@@ -107,7 +107,7 @@ export default function AboutPage() {
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
                 <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-                  Founded in Kimberley, Kgolo Agritech is dedicated to transforming South African
+                  Founded in Taung, Kgolo Agritech is dedicated to transforming South African
                   agriculture through cutting-edge AI and blockchain technology. We believe that
                   precision farming is the key to sustainable food security.
                 </p>
