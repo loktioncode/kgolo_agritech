@@ -40,12 +40,7 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Kgolo Agritech | Digital Ledger for African Biosecurity',
-    description: 'AI and Blockchain solutions for South Africa\'s agricultural future.',
-    images: ['/og-image.jpg'],
-  },
+
   icons: {
     icon: '/crop-logo.svg',
     apple: '/crop-logo.svg',

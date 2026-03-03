@@ -118,7 +118,17 @@ export default function ContactPage() {
                             <p className="font-semibold text-lg mb-1">{item.title}</p>
                             {item.details.map((detail) => (
                               <p key={detail} className="text-muted-foreground group-hover:text-foreground transition-colors">
-                                {detail}
+                                {detail.includes('@') ? (
+                                  <a href={`mailto:${detail}`} className="hover:underline">
+                                    {detail}
+                                  </a>
+                                ) : detail.includes('+27') ? (
+                                  <a href={`tel:${detail.replace(/\s+/g, '')}`} className="hover:underline">
+                                    {detail}
+                                  </a>
+                                ) : (
+                                  detail
+                                )}
                               </p>
                             ))}
                           </div>
@@ -189,7 +199,7 @@ export default function ContactPage() {
                       Stay updated with biosecurity news and technical insights.
                     </p>
                     <Button variant="outline" size="lg" className="w-full border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:scale-[1.02] transition-all" asChild>
-                      <Link href="https://linkedin.com/company/kgolo-agritech" target="_blank">
+                      <Link href="https://www.linkedin.com/company/kgolo-agriculture/" target="_blank">
                         Connect on LinkedIn
                       </Link>
                     </Button>
