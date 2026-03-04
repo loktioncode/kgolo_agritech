@@ -29,7 +29,7 @@ const services = [
     icon: Brain,
     title: "AI Neural Vision Diagnostics",
     description:
-      "Our Google Vertex-powered AI identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
+      "Our Artificial Intelligence identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
     features: [
       "FMD lesion detection with 95%+ accuracy",
       "Crop pest identification (Fall Armyworm)",

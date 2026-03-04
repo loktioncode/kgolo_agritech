@@ -54,7 +54,7 @@ const techStack = [
         icon: Brain,
         title: "AI Neural Vision",
         description:
-            "Our Google Vertex-powered AI identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
+            "Our Artificial Intelligence identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
         image: "/images/cattle-fmd-ai.png",
     },
     {

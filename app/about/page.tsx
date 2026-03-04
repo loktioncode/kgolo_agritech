@@ -55,7 +55,7 @@ const milestones = [
   {
     year: "2025",
     title: "AI R&D & Field Testing",
-    description: "Extensive development of our Google Vertex-powered AI and field testing with North West cattle farmers.",
+    description: "Extensive development of our Artificial Intelligence and field testing with North West cattle farmers.",
   },
   {
     year: "2026",
