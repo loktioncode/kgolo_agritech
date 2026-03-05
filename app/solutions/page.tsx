@@ -19,7 +19,7 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
-  title: "Solutions | Sector-Specific Agritech for South Africa",
+  title: "Solutions | Sector-Specific Agriculture for South Africa",
   description:
     "Tailored digital solutions for Livestock, Crop Farming, Viticulture, and Forestry. Ensuring LITS compliance and biosecurity for every operation.",
 }
@@ -125,7 +125,7 @@ export default function SolutionsPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/livestock-tracking.jpg"
-            alt="Livestock management and traceability in South Africa - Kgolo Agritech Solutions"
+            alt="Livestock management and traceability in South Africa - Kgolo Agriculture Solutions"
             fill
             className="object-cover opacity-60"
             priority
@@ -244,7 +244,7 @@ export default function SolutionsPage() {
                 Real Results from South African Farmers
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                See how farmers are achieving measurable improvements with Kgolo Agritech.
+                See how farmers are achieving measurable improvements with Kgolo Agriculture.
               </p>
             </FadeIn>
           </div>
@@ -278,7 +278,7 @@ export default function SolutionsPage() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/hero-drone.jpg"
-                alt="South African farmland with drone surveillance - Kgolo Agritech"
+                alt="South African farmland with drone surveillance - Kgolo Agriculture"
                 fill
                 className="object-cover"
               />

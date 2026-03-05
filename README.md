@@ -1,2 +1,2 @@
-# KGOLO Agritech WEB UI
+# KGOLO Agriculture WEB UI
 

@@ -19,7 +19,7 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
-  title: "Agritech Services | AI Diagnostics & Blockchain Traceability",
+  title: "Agriculture Services | AI Diagnostics & Blockchain Traceability",
   description:
     "Explore our technological services including AI-powered FMD detection, blockchain health passports, and edge-sync offline-first data solutions.",
 }
@@ -29,7 +29,7 @@ const services = [
     icon: Brain,
     title: "AI Neural Vision Diagnostics",
     description:
-      "Our Google Vertex-powered AI identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
+      "Our Artificial Intelligence identifies FMD lesions and crop deficiencies in seconds, directly from a smartphone camera.",
     features: [
       "FMD lesion detection with 95%+ accuracy",
       "Crop pest identification (Fall Armyworm)",
@@ -55,7 +55,7 @@ const services = [
     icon: Wifi,
     title: "Edge-Sync Technology",
     description:
-      "Engineered for the Northern Cape. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
+      "Engineered for the North West. Our 'Offline-First' architecture ensures data integrity in regions with zero connectivity.",
     features: [
       "Zero-data offline mode",
       "Automatic sync when connected",
@@ -94,7 +94,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-drone.jpg"
-            alt="South African green farmland viewed from a drone - Kgolo Agritech Expertise"
+            alt="South African green farmland viewed from a drone - Kgolo Agriculture Expertise"
             fill
             className="object-cover opacity-70"
             priority

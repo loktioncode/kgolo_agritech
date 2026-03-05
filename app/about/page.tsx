@@ -18,9 +18,9 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { MeshBackground } from "@/components/ui/mesh-background"
 
 export const metadata = {
-  title: "About Us | Kgolo Agritech - Our Journey & Mission",
+  title: "About Us | Kgolo Agriculture - Our Journey & Mission",
   description:
-    "Discover how Kgolo Agritech is transforming South African agriculture through AI diagnostics and blockchain traceability. Our story, values, and 2026 roadmap.",
+    "Discover how Kgolo Agriculture is transforming South African agriculture through AI diagnostics and blockchain traceability. Our story, values, and 2026 roadmap.",
 }
 
 const values = [
@@ -50,12 +50,12 @@ const milestones = [
   {
     year: "2024",
     title: "Founded",
-    description: "Kgolo Agritech was established in Kimberley with a vision to modernize South African agriculture.",
+    description: "Kgolo Agriculture was established in Taung with a vision to modernize South African agriculture.",
   },
   {
     year: "2025",
     title: "AI R&D & Field Testing",
-    description: "Extensive development of our Google Vertex-powered AI and field testing with Northern Cape cattle farmers.",
+    description: "Extensive development of our Artificial Intelligence and field testing with North West cattle farmers.",
   },
   {
     year: "2026",
@@ -75,7 +75,7 @@ const milestones = [
 ]
 
 const stats = [
-  { value: "Northern Cape", label: "Headquarters" },
+  { value: "North West", label: "Headquarters" },
   { value: "2024", label: "Founded" },
   { value: "R300k", label: "Phase 1 Target" },
   { value: "100%", label: "SA Owned" },
@@ -102,12 +102,12 @@ export default function AboutPage() {
                   className="text-4xl font-bold tracking-tight sm:text-5xl text-balance"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  About Kgolo Agritech
+                  About Kgolo Agriculture
                 </h1>
               </FadeIn>
               <FadeIn direction="up" delay={0.6}>
                 <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-                  Founded in Kimberley, Kgolo Agritech is dedicated to transforming South African
+                  Founded in Taung, Kgolo Agriculture is dedicated to transforming South African
                   agriculture through cutting-edge AI and blockchain technology. We believe that
                   precision farming is the key to sustainable food security.
                 </p>
@@ -122,7 +122,7 @@ export default function AboutPage() {
             <FadeIn direction="left" delay={0.6} className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/about-hero.jpg"
-                alt="South African farmland - Representative of Kgolo Agritech's agricultural focus"
+                alt="South African farmland - Representative of Kgolo Agriculture's agricultural focus"
                 fill
                 className="object-cover"
               />
@@ -192,7 +192,7 @@ export default function AboutPage() {
                 Our Core Values
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                The principles that guide everything we do at Kgolo Agritech.
+                The principles that guide everything we do at Kgolo Agriculture.
               </p>
             </FadeIn>
           </div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
                 Our Journey
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Key milestones in the Kgolo Agritech story.
+                Key milestones in the Kgolo Agriculture story.
               </p>
             </FadeIn>
           </div>

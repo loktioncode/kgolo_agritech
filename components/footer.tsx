@@ -79,7 +79,7 @@ export function Footer() {
             <div className="mt-4 space-y-3">
               <div className="flex items-start gap-2 text-sm text-background/70">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>Kimberley, Northern Cape<br />South Africa</span>
+                <span>Taung, North West<br />South Africa</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Phone className="h-4 w-4" />
@@ -95,13 +95,13 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Linkedin className="h-4 w-4" />
-                <a href="https://linkedin.com/company/kgolo-agritech" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
+                <a href="https://www.linkedin.com/company/kgolo-agriculture/" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
                   LinkedIn
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <Instagram className="h-4 w-4" />
-                <a href="https://instagram.com/kgolo_agritech" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
+                <a href="https://www.instagram.com/kgoloagri?igsh=Mnl0NjBiaWQwdDNw&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">
                   Instagram
                 </a>
               </div>

@@ -17,15 +17,15 @@ import { MeshBackground } from "@/components/ui/mesh-background"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Kgolo Agritech - Get in Touch",
-  description: "Contact Kgolo Agritech in Kimberley, Northern Cape. We're here to help South African farmers with AI and blockchain agricultural solutions.",
+  title: "Contact Us | Kgolo Agriculture - Get in Touch",
+  description: "Contact Kgolo Agriculture in Taung, North West. We're here to help South African farmers with AI and blockchain agricultural solutions.",
 }
 
 const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    details: ["Kimberley, Northern Cape", "South Africa"],
+    details: ["Taung, North West", "South Africa"],
   },
   {
     icon: Mail,
@@ -76,7 +76,7 @@ export default function ContactPage() {
             </FadeIn>
             <FadeIn direction="up" delay={0.6}>
               <p className="text-xl text-background/80 leading-relaxed max-w-2xl">
-                Ready to transform your agricultural operations? Our team in Kimberley is
+                Ready to transform your agricultural operations? Our team in Taung is
                 standing by to help you achieve compliance and unlock new growth opportunities.
               </p>
             </FadeIn>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                   Regional HQ
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-md">
-                  Visit our headquarters in the heart of the Northern Cape or reach out
+                  Visit our headquarters in the heart of the North West or reach out
                   through any of our digital channels.
                 </p>
               </FadeIn>
@@ -118,7 +118,17 @@ export default function ContactPage() {
                             <p className="font-semibold text-lg mb-1">{item.title}</p>
                             {item.details.map((detail) => (
                               <p key={detail} className="text-muted-foreground group-hover:text-foreground transition-colors">
-                                {detail}
+                                {detail.includes('@') ? (
+                                  <a href={`mailto:${detail}`} className="hover:underline">
+                                    {detail}
+                                  </a>
+                                ) : detail.includes('+27') ? (
+                                  <a href={`tel:${detail.replace(/\s+/g, '')}`} className="hover:underline">
+                                    {detail}
+                                  </a>
+                                ) : (
+                                  detail
+                                )}
                               </p>
                             ))}
                           </div>
@@ -189,7 +199,7 @@ export default function ContactPage() {
                       Stay updated with biosecurity news and technical insights.
                     </p>
                     <Button variant="outline" size="lg" className="w-full border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:scale-[1.02] transition-all" asChild>
-                      <Link href="https://linkedin.com/company/kgolo-agritech" target="_blank">
+                      <Link href="https://www.linkedin.com/company/kgolo-agriculture/" target="_blank">
                         Connect on LinkedIn
                       </Link>
                     </Button>
