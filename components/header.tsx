@@ -113,7 +113,7 @@ export function Header() {
                   </Button>
                 </div>
                 <div className="mt-8 text-center">
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">© 2026 Kgolo Agritech</p>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">© 2026 Kgolo Agriculture</p>
                 </div>
               </div>
             </div>

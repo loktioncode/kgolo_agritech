@@ -10,10 +10,10 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://kgolo.co.za'),
-  title: 'Kgolo Agritech | Digital Ledger for African Biosecurity',
+  title: 'Kgolo Agriculture | Digital Ledger for African Biosecurity',
   description: 'Powering South Africa\'s 2026 FMD recovery through AI diagnostics and Blockchain traceability. Turning livestock and crops into verified, bankable assets.',
   keywords: [
-    'Kgolo Agritech',
+    'Kgolo Agriculture',
     'FMD recovery South Africa 2026',
     'livestock traceability blockchain',
     'AI diagnostics agriculture',
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     'digital livestock identification'
   ],
   openGraph: {
-    title: 'Kgolo Agritech | Digital Ledger for African Biosecurity',
+    title: 'Kgolo Agriculture | Digital Ledger for African Biosecurity',
     description: 'AI and Blockchain solutions for South Africa\'s agricultural future.',
     url: 'https://kgolo.co.za',
-    siteName: 'Kgolo Agritech',
+    siteName: 'Kgolo Agriculture',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kgolo Agritech - Innovating Agriculture',
+        alt: 'Kgolo Agriculture - Innovating Agriculture',
       },
     ],
     locale: 'en_ZA',

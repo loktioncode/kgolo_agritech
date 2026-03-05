@@ -17,8 +17,8 @@ import { MeshBackground } from "@/components/ui/mesh-background"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Kgolo Agritech - Get in Touch",
-  description: "Contact Kgolo Agritech in Taung, North West. We're here to help South African farmers with AI and blockchain agricultural solutions.",
+  title: "Contact Us | Kgolo Agriculture - Get in Touch",
+  description: "Contact Kgolo Agriculture in Taung, North West. We're here to help South African farmers with AI and blockchain agricultural solutions.",
 }
 
 const contactInfo = [
