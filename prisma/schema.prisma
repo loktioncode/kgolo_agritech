@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid()) @db.VarChar(36)
+  email         String   @unique @db.VarChar(255)
+  password_hash String   @db.VarChar(255)
+  farmer_id     String?  @db.VarChar(36)
+  created_at    DateTime @default(now())
+
+  farmer Farmer? @relation(fields: [farmer_id], references: [id])
+
+  @@map("users")
+}
+
+model Farmer {
+  id             String  @id @db.VarChar(36)
+  name           String  @db.VarChar(255)
+  id_number      String  @db.VarChar(100)
+  phone          String  @db.VarChar(50)
+  photo_path     String? @db.VarChar(500)
+  consent_given  Int     @default(0)
+  consent_date   String? @db.VarChar(30)
+  address        String? @db.Text
+  farm_latitude  Float?
+  farm_longitude Float?
+  farm_accuracy  Float?
+  created_at     String  @db.VarChar(30)
+  updated_at     String  @db.VarChar(30)
+  sync_version   Int     @default(0)
+  last_synced_at String? @db.VarChar(30)
+
+  users      User[]
+  parcels    Parcel[]
+  animals    Animal[]
+  activities Activity[]
+
+  @@map("farmers")
+}
+
+model Parcel {
+  id             String  @id @db.VarChar(36)
+  farmer_id      String  @db.VarChar(36)
+  name           String  @db.VarChar(255)
+  latitude       Float?
+  longitude      Float?
+  accuracy       Float?
+  created_at     String  @db.VarChar(30)
+  updated_at     String  @db.VarChar(30)
+  sync_version   Int     @default(0)
+  last_synced_at String? @db.VarChar(30)
+
+  farmer     Farmer     @relation(fields: [farmer_id], references: [id])
+  animals    Animal[]
+  activities Activity[]
+
+  @@map("parcels")
+}
+
+model Animal {
+  id             String  @id @db.VarChar(36)
+  farmer_id      String  @db.VarChar(36)
+  species        String  @db.VarChar(50)
+  breed          String? @db.VarChar(100)
+  birth_date     String? @db.VarChar(20)
+  ear_tag        String? @db.VarChar(100)
+  photo_path     String? @db.VarChar(500)
+  parcel_id      String? @db.VarChar(36)
+  /// ISO timestamp set when farmer soft-deletes the animal; NULL = active.
+  deleted_at     String? @db.VarChar(30)
+  created_at     String  @db.VarChar(30)
+  updated_at     String  @db.VarChar(30)
+  sync_version   Int     @default(0)
+  last_synced_at String? @db.VarChar(30)
+
+  farmer Farmer  @relation(fields: [farmer_id], references: [id])
+  parcel Parcel? @relation(fields: [parcel_id], references: [id])
+
+  @@map("animals")
+}
+
+model Activity {
+  id             String  @id @db.VarChar(36)
+  farmer_id      String  @db.VarChar(36)
+  type           String  @db.VarChar(50)
+  timestamp      String  @db.VarChar(30)
+  latitude       Float?
+  longitude      Float?
+  accuracy       Float?
+  parcel_id      String? @db.VarChar(36)
+  animal_id      String? @db.VarChar(36)
+  /// JSON array of animal UUIDs linked to this activity.
+  animal_ids     String? @db.Text
+  notes          String? @db.Text
+  photo_path     String? @db.VarChar(500)
+  created_at     String  @db.VarChar(30)
+  updated_at     String  @db.VarChar(30)
+  sync_version   Int     @default(0)
+  last_synced_at String? @db.VarChar(30)
+
+  farmer Farmer  @relation(fields: [farmer_id], references: [id])
+  parcel Parcel? @relation(fields: [parcel_id], references: [id])
+
+  @@map("activities")
+}
