@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import {
   ArrowRight,
   Download,
+  Play,
   Landmark,
   Users,
   Shield,
@@ -92,9 +93,6 @@ const stats = [
   { value: "Offline", label: "Works without signal" },
 ]
 
-const PLAY_BADGE_SRC =
-  "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-
 export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"livestock" | "crops">("livestock")
   const apkHref = process.env.NEXT_PUBLIC_APK_URL || "/kgolo.apk"
@@ -138,45 +136,58 @@ export function HomeClient() {
             </FadeIn>
             <FadeIn direction="up" delay={0.8} className="mt-10">
               <p className="mb-4 text-sm font-medium uppercase tracking-wider text-background/75">Get the app</p>
-              <div className="flex flex-col items-stretch sm:items-start gap-5 max-w-xl">
+              <div className="flex flex-row flex-wrap items-center gap-4">
                 <Button
                   asChild
                   size="lg"
-                  className="h-16 px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl w-full sm:w-auto"
+                  className="h-16 px-8 sm:px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl shrink-0"
                 >
-                  <a href={apkHref} download>
+                  <a href={apkHref} download className="inline-flex items-center">
                     <Download className="mr-3 h-6 w-6 shrink-0" />
                     Download APK
                   </a>
                 </Button>
-                <div className="flex flex-col gap-2">
-                  {playStoreUrl ? (
+                {playStoreUrl ? (
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="lg"
+                    className="h-16 px-6 sm:px-8 text-foreground shadow-lg hover:scale-[1.02] transition-transform rounded-xl shrink-0 bg-background hover:bg-background/95"
+                  >
                     <a
                       href={playStoreUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block w-fit rounded-lg overflow-hidden ring-1 ring-background/25 bg-background hover:ring-background/50 transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-background"
+                      className="inline-flex items-center gap-3"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element -- external Google Play badge asset */}
-                      <img
-                        src={PLAY_BADGE_SRC}
-                        alt="Get it on Google Play"
-                        width={180}
-                        height={54}
-                        className="h-auto w-[min(200px,100%)] block"
-                      />
+                      <Play className="h-7 w-7 shrink-0 text-[#01875f]" strokeWidth={2.25} />
+                      <span className="flex flex-col items-start leading-none gap-1">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          Get it on
+                        </span>
+                        <span className="text-lg font-bold tracking-tight">Google Play</span>
+                      </span>
                     </a>
-                  ) : (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      disabled
-                      className="h-14 px-6 w-full sm:w-auto border-background/35 bg-background/10 text-background/70 cursor-not-allowed"
-                    >
-                      Google Play   link coming soon
-                    </Button>
-                  )}
-                </div>
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled
+                    className="min-h-16 py-3 px-6 h-auto border-background/40 bg-background/10 text-background cursor-not-allowed opacity-80 shrink-0 rounded-xl"
+                  >
+                    <span className="flex items-center gap-3">
+                      <Play className="h-7 w-7 shrink-0 opacity-50" />
+                      <span className="flex flex-col items-start leading-none gap-1 text-left">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-background/60">
+                          Get it on
+                        </span>
+                        <span className="text-lg font-bold tracking-tight">Google Play</span>
+                        <span className="text-xs font-normal text-background/55 pt-0.5">Link coming soon</span>
+                      </span>
+                    </span>
+                  </Button>
+                )}
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={1} className="mt-8">
@@ -527,41 +538,64 @@ export function HomeClient() {
                   className="text-3xl font-bold tracking-tight text-background sm:text-4xl lg:text-5xl text-balance"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Pilot open in the North West   limited spots
+                  Pilot open in the North West — limited spots
                 </h2>
                 <p className="mt-6 text-xl text-background/80 max-w-2xl mx-auto">
                   Taung roots, Setswana name: Kgolo means growth. Get involved: we will call farmers who apply with
                   name, phone, district, and herd size.
                 </p>
                 <div className="mt-10 flex flex-col items-center gap-6" id="get-app">
-                  <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+                  <div className="flex flex-row flex-wrap items-center justify-center gap-4">
                     <Button
                       size="lg"
                       asChild
-                      className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform"
+                      className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform shrink-0"
                     >
-                      <a href={apkHref} download>
-                        <Download className="mr-2 h-5 w-5" />
+                      <a href={apkHref} download className="inline-flex items-center">
+                        <Download className="mr-2 h-5 w-5 shrink-0" />
                         Download APK
                       </a>
                     </Button>
                     {playStoreUrl ? (
-                      <a
-                        href={playStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block rounded-lg overflow-hidden ring-1 ring-background/25 bg-background hover:ring-background/50 transition-shadow"
+                      <Button
+                        asChild
+                        variant="secondary"
+                        size="lg"
+                        className="h-14 px-6 text-foreground bg-background hover:bg-background/95 shrink-0"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={PLAY_BADGE_SRC}
-                          alt="Get it on Google Play"
-                          width={180}
-                          height={54}
-                          className="h-auto w-[min(200px,92vw)] block"
-                        />
-                      </a>
-                    ) : null}
+                        <a
+                          href={playStoreUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2.5"
+                        >
+                          <Play className="h-6 w-6 shrink-0 text-[#01875f]" strokeWidth={2.25} />
+                          <span className="flex flex-col items-start leading-none gap-0.5">
+                            <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
+                              Get it on
+                            </span>
+                            <span className="text-base font-bold tracking-tight">Google Play</span>
+                          </span>
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        disabled
+                        className="h-14 px-6 border-background/40 bg-background/10 text-background cursor-not-allowed shrink-0"
+                      >
+                        <span className="inline-flex items-center gap-2.5">
+                          <Play className="h-6 w-6 shrink-0 opacity-50" />
+                          <span className="flex flex-col items-start leading-none gap-0.5 text-left">
+                            <span className="text-[9px] font-semibold uppercase tracking-wider text-background/60">
+                              Get it on
+                            </span>
+                            <span className="text-base font-bold">Google Play</span>
+                          </span>
+                        </span>
+                      </Button>
+                    )}
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
