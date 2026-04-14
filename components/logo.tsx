@@ -9,6 +9,7 @@ import Image from "next/image"
 export function Logo({ className = "h-8 w-8", showText = true, variant = "default" }: LogoProps) {
   const textColor = variant === "light" ? "text-background" : "text-foreground"
 
+  
   return (
     <div className="flex items-center gap-2.5">
       <Image
