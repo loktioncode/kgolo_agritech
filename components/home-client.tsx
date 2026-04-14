@@ -183,7 +183,7 @@ export function HomeClient() {
                           Get it on
                         </span>
                         <span className="text-lg font-bold tracking-tight">Google Play</span>
-                        <span className="text-xs font-normal text-background/55 pt-0.5">Link coming soon</span>
+                        <span className="text-xs font-normal text-background/55 pt-0.5"> </span>
                       </span>
                     </span>
                   </Button>
