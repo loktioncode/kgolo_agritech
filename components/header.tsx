@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetHeader } from "@/components/ui/sheet"
 import { Menu, ChevronRight } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { cn } from "@/lib/utils"
@@ -28,7 +28,6 @@ export function Header() {
           <Logo className="h-9 w-9" />
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-10">
           {navigation.map((item) => {
             const isActive = pathname === item.href
@@ -38,9 +37,7 @@ export function Header() {
                 href={item.href}
                 className={cn(
                   "text-sm font-medium transition-all duration-200 hover:text-primary relative py-1",
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                  isActive ? "text-primary" : "text-muted-foreground"
                 )}
               >
                 {item.name}
@@ -58,7 +55,6 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon" className="hover:bg-primary/5">
@@ -94,10 +90,12 @@ export function Header() {
                         )}
                       >
                         <span className="text-xl font-bold tracking-tight">{item.name}</span>
-                        <ChevronRight className={cn(
-                          "h-5 w-5 transition-all duration-300",
-                          isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-                        )} />
+                        <ChevronRight
+                          className={cn(
+                            "h-5 w-5 transition-all duration-300",
+                            isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+                          )}
+                        />
                       </Link>
                     )
                   })}
@@ -108,12 +106,12 @@ export function Header() {
                 <div className="grid gap-4">
                   <Button className="w-full justify-center shadow-xl shadow-primary/20 h-14 text-lg font-bold rounded-2xl" asChild>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
-                      Let's Chat
+                      Let&apos;s Chat
                     </Link>
                   </Button>
                 </div>
                 <div className="mt-8 text-center">
-                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">© 2026 Kgolo Agriculture</p>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">© 2026 Kgolo</p>
                 </div>
               </div>
             </div>

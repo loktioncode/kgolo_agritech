@@ -1,7 +1,6 @@
-import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Shield, Gavel, ExternalLink } from "lucide-react"
+import { Shield, Gavel } from "lucide-react"
 import { FadeIn } from "@/components/animations/fade-in"
 import { MeshBackground } from "@/components/ui/mesh-background"
 import { Metadata } from "next"
@@ -84,6 +83,7 @@ export default function LegalPage() {
                                         <li>We only collect data necessary for our service delivery.</li>
                                         <li>Data is used primarily for biosecurity and traceability reporting.</li>
                                         <li>You retain the right to access and request correction of your data.</li>
+                                        <li>Farmer data is never sold. We do not share personal or production data without your consent.</li>
                                     </ul>
                                 </div>
                             </section>

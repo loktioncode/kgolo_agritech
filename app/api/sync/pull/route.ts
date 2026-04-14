@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   if (!auth) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
 
   if (!auth.farmerId) {
-    // No farmer linked yet — return empty payload (client will push first)
+    // No farmer linked yet   return empty payload (client will push first)
     return NextResponse.json({ farmers: [], parcels: [], animals: [], activities: [] });
   }
 
