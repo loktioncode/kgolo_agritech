@@ -95,7 +95,6 @@ const stats = [
 
 export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"livestock" | "crops">("livestock")
-  const apkHref = process.env.NEXT_PUBLIC_APK_URL || "/kgolo.apk"
   const playStoreUrl = process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || ""
 
   return (
@@ -142,7 +141,7 @@ export function HomeClient() {
                   size="lg"
                   className="h-16 px-8 sm:px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl shrink-0"
                 >
-                  <a href={apkHref} download="kgolo.apk" className="inline-flex items-center">
+                  <a href="http://uvd.4dd.mytemp.website/apk/kgolo.apk" download="kgolo.apk" className="inline-flex items-center">
                     <Download className="mr-3 h-6 w-6 shrink-0" />
                     Download APK
                   </a>
@@ -551,7 +550,7 @@ export function HomeClient() {
                       asChild
                       className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform shrink-0"
                     >
-                      <a href={apkHref} download="kgolo.apk" className="inline-flex items-center">
+                      <a href="http://uvd.4dd.mytemp.website/apk/kgolo.apk" download="kgolo.apk" className="inline-flex items-center">
                         <Download className="mr-2 h-5 w-5 shrink-0" />
                         Download APK
                       </a>
