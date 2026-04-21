@@ -89,6 +89,57 @@ export default function LegalPage() {
                             </section>
                         </FadeIn>
 
+                        {/* Section: Mobile App Data Collection & Use */}
+                        <FadeIn direction="up" delay={0.35}>
+                            <section className="p-8 lg:p-12 border-l-4 border-primary bg-card/50">
+                                <h2
+                                    className="text-2xl font-bold mb-6"
+                                    style={{ fontFamily: "var(--font-display)" }}
+                                >
+                                    Mobile App Data Collection & Use
+                                </h2>
+                                <div className="space-y-4 text-muted-foreground">
+                                    <p>
+                                        This section explains how the KGOLO mobile app collects and uses data when
+                                        permissions are granted on your device.
+                                    </p>
+                                    <ul className="list-disc pl-6 space-y-2">
+                                        <li>
+                                            <strong>Camera:</strong> Used to capture profile photos and field/record images.
+                                        </li>
+                                        <li>
+                                            <strong>Location (fine/coarse):</strong> Used to capture parcel and field GPS coordinates.
+                                        </li>
+                                        <li>
+                                            <strong>Microphone/Audio:</strong> Used only when camera or media features require audio capture.
+                                        </li>
+                                        <li>
+                                            <strong>Calendar:</strong> Used to create reminders and scheduled farm activity events.
+                                        </li>
+                                        <li>
+                                            <strong>Photos/Media access:</strong> Used to upload images from your gallery into records.
+                                        </li>
+                                        <li>
+                                            <strong>Notifications:</strong> Used to deliver reminders and important alerts.
+                                        </li>
+                                        <li>
+                                            <strong>Backend transfer/storage:</strong> Relevant operational data is transmitted to and
+                                            stored via our backend services at <strong>api.kgolo.co.za</strong> according to our retention
+                                            and security controls.
+                                        </li>
+                                        <li>
+                                            <strong>User controls:</strong> You can revoke permissions at device level, request correction
+                                            or deletion of personal data, and contact us at <strong>info@kgolo.co.za</strong>.
+                                        </li>
+                                    </ul>
+                                    <p>
+                                        We do not sell personal data. Any sharing of data with third parties is limited to what is
+                                        necessary for service delivery, legal compliance, or with your consent.
+                                    </p>
+                                </div>
+                            </section>
+                        </FadeIn>
+
                         {/* Section: Terms of Use */}
                         <FadeIn direction="up" delay={0.4}>
                             <section className="p-8 lg:p-12 border-l-4 border-primary bg-card/50">
@@ -116,7 +167,7 @@ export default function LegalPage() {
 
                     <div className="mt-16 text-center">
                         <p className="text-sm text-muted-foreground">
-                            Last Updated: January 2026<br />
+                            Last Updated: April 2026<br />
                             &copy; 2026 Kgolo (Pty) Ltd.
                         </p>
                     </div>
