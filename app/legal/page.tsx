@@ -4,6 +4,7 @@ import { Shield, Gavel } from "lucide-react"
 import { FadeIn } from "@/components/animations/fade-in"
 import { MeshBackground } from "@/components/ui/mesh-background"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
     title: "Legal Information | Kgolo Agriculture - POPIA & Terms",
@@ -84,6 +85,13 @@ export default function LegalPage() {
                                         <li>Data is used primarily for biosecurity and traceability reporting.</li>
                                         <li>You retain the right to access and request correction of your data.</li>
                                         <li>Farmer data is never sold. We do not share personal or production data without your consent.</li>
+                                        <li>
+                                            You may request account and personal data deletion via{" "}
+                                            <Link href="/delete-acounts" className="underline hover:text-foreground">
+                                                /delete-acounts
+                                            </Link>{" "}
+                                            or by contacting <strong>info@kgolo.co.za</strong>.
+                                        </li>
                                     </ul>
                                 </div>
                             </section>
