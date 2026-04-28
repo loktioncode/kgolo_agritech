@@ -67,7 +67,7 @@ export default function DashboardLoginPage() {
             Kgolo Central Dashboard
           </p>
           <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-            Verify your synced farm records in one place
+             Verified  farm records in one place
           </h1>
           <p className="mt-4 max-w-lg text-base text-background/85">
             Login with your National ID or phone number used in the mobile app. If your profile is not found, sync from
