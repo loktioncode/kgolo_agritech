@@ -3,8 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { signToken } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { requireMobileClient } from '@/lib/mobile-client';
 
 export async function POST(req: NextRequest) {
+  const client = requireMobileClient(req);
+  if (!client.ok) {
+    return NextResponse.json({ error: client.error }, { status: client.status });
+  }
+
   try {
     const { email, password } = (await req.json()) as {
       email?: string;

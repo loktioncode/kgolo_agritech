@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "Dashboard", href: "/dashboard/login" },
   { name: "Services", href: "/services" },
   { name: "Solutions", href: "/solutions" },
   { name: "About", href: "/about" },
@@ -50,6 +51,9 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-4">
+          <Button size="sm" variant="outline" asChild>
+            <Link href="/dashboard/login">Login</Link>
+          </Button>
           <Button size="sm" className="shadow-lg shadow-primary/20" asChild>
             <Link href="/contact">Contact Us</Link>
           </Button>
@@ -104,6 +108,11 @@ export function Header() {
 
               <div className="px-8 py-8 bg-secondary/30 border-t border-border/50">
                 <div className="grid gap-4">
+                  <Button variant="outline" className="w-full justify-center h-12 rounded-xl" asChild>
+                    <Link href="/dashboard/login" onClick={() => setIsOpen(false)}>
+                      Farmer Login
+                    </Link>
+                  </Button>
                   <Button className="w-full justify-center shadow-xl shadow-primary/20 h-14 text-lg font-bold rounded-2xl" asChild>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
                       Let&apos;s Chat

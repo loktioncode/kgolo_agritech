@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { requireMobileClient } from '@/lib/mobile-client';
 
 /**
  * DELETE /api/sync/user
@@ -9,6 +10,11 @@ import { prisma } from '@/lib/db';
  * Anonymises the farmer's personal data and marks all records for deletion.
  */
 export async function DELETE(req: NextRequest) {
+  const client = requireMobileClient(req);
+  if (!client.ok) {
+    return NextResponse.json({ error: client.error }, { status: client.status });
+  }
+
   const auth = requireAuth(req);
   if (!auth) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
 
