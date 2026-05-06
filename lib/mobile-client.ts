@@ -46,3 +46,18 @@ export function requireMobileClient(req: NextRequest): MobileClientCheckResult {
 
   return { ok: true, appId };
 }
+
+export type FarmerIdCheckResult =
+  | { ok: true; farmerId: string }
+  | { ok: false; status: number; error: string };
+
+export function requireFarmerIdHeader(req: NextRequest): FarmerIdCheckResult {
+  const farmerId = (req.headers.get('x-kg-farmer-id') ?? '').trim();
+  if (!farmerId) {
+    return { ok: false, status: 400, error: 'Missing x-kg-farmer-id header' };
+  }
+  if (!/^[A-Za-z0-9-]{8,64}$/.test(farmerId)) {
+    return { ok: false, status: 400, error: 'Invalid x-kg-farmer-id format' };
+  }
+  return { ok: true, farmerId };
+}

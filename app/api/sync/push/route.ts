@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { requireMobileClient } from '@/lib/mobile-client';
+import { requireFarmerIdHeader, requireMobileClient } from '@/lib/mobile-client';
 
 type FarmerDTO = {
   id: string;
@@ -62,6 +61,8 @@ type ActivityDTO = {
   updated_at?: string;
 };
 
+class SyncValidationError extends Error {}
+
 function plausibleSaIdYymmdd(yymmdd: string): boolean {
   if (!/^\d{6}$/.test(yymmdd)) return false;
   const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
@@ -114,8 +115,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: client.error }, { status: client.status });
   }
 
-  const auth = requireAuth(req);
-  if (!auth) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+  const farmerCtx = requireFarmerIdHeader(req);
+  if (!farmerCtx.ok) {
+    return NextResponse.json({ error: farmerCtx.error }, { status: farmerCtx.status });
+  }
+  const farmerId = farmerCtx.farmerId;
 
   try {
     const now = new Date().toISOString();
@@ -128,16 +132,25 @@ export async function POST(req: NextRequest) {
 
     const { farmers = [], parcels = [], animals = [], activities = [] } = body;
 
+    const mismatchedFarmer =
+      farmers.some((f) => f.id !== farmerId) ||
+      parcels.some((p) => p.farmer_id !== farmerId) ||
+      animals.some((a) => a.farmer_id !== farmerId) ||
+      activities.some((ac) => ac.farmer_id !== farmerId);
+    if (mismatchedFarmer) {
+      return NextResponse.json(
+        { error: 'Payload farmer ids must match x-kg-farmer-id.' },
+        { status: 400 },
+      );
+    }
+
     await prisma.$transaction(async (tx) => {
       // ── Farmers ────────────────────────────────────────────────────────────
       for (const f of farmers) {
         const idNumber = (f.id_number ?? '').trim();
         const phone = normalizeSouthAfricanMobile(f.phone ?? '');
         if (!validSaIdNumber(idNumber) || !phone) {
-          return NextResponse.json(
-            { error: `Invalid farmer identity data for farmer ${f.id}.` },
-            { status: 400 },
-          );
+          throw new SyncValidationError(`Invalid farmer identity data for farmer ${f.id}.`);
         }
 
         await tx.farmer.upsert({
@@ -175,13 +188,6 @@ export async function POST(req: NextRequest) {
             last_synced_at: now,
           },
         });
-        if (!auth.farmerId) {
-          await tx.user.update({
-            where: { id: auth.userId },
-            data: { farmer_id: f.id },
-          });
-          auth.farmerId = f.id;
-        }
       }
 
       // ── Parcels ─────────────────────────────────────────────────────────────
@@ -289,6 +295,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
+    if (err instanceof SyncValidationError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
     console.error('[sync/push]', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
