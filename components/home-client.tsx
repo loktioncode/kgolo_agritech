@@ -93,9 +93,17 @@ const stats = [
   { value: "Offline", label: "Works without signal" },
 ]
 
+function appDownloadLinkProps(url: string) {
+  const isDirectApk = /\.apk(\?|#|$)/i.test(url) || url.includes("expo.dev/artifacts")
+  return isDirectApk
+    ? ({ href: url, download: "kgolo.apk" } as const)
+    : ({ href: url, target: "_blank", rel: "noopener noreferrer" } as const)
+}
+
 export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"livestock" | "crops">("livestock")
-  const playStoreUrl = process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || ""
+  const appDownloadUrl = process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || ""
+  const isPlayStoreListing = appDownloadUrl.includes("play.google.com")
 
   return (
     <>
@@ -136,17 +144,32 @@ export function HomeClient() {
             <FadeIn direction="up" delay={0.8} className="mt-10">
               <p className="mb-4 text-sm font-medium uppercase tracking-wider text-background/75">Get the app</p>
               <div className="flex flex-row flex-wrap items-center gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="h-16 px-8 sm:px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl shrink-0"
-                >
-                  <a href="http://uvd.4dd.mytemp.website/apk/kgolo.apk" download="kgolo.apk" className="inline-flex items-center">
+                {appDownloadUrl ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-16 px-8 sm:px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl shrink-0"
+                  >
+                    <a
+                      {...appDownloadLinkProps(appDownloadUrl)}
+                      className="inline-flex items-center"
+                    >
+                      <Download className="mr-3 h-6 w-6 shrink-0" />
+                      Download app
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    size="lg"
+                    disabled
+                    className="h-16 px-8 sm:px-10 text-lg font-semibold rounded-xl shrink-0 opacity-80"
+                  >
                     <Download className="mr-3 h-6 w-6 shrink-0" />
-                    Download APK
-                  </a>
-                </Button>
-                {playStoreUrl ? (
+                    Download app
+                  </Button>
+                )}
+                {isPlayStoreListing ? (
                   <Button
                     asChild
                     variant="secondary"
@@ -154,7 +177,7 @@ export function HomeClient() {
                     className="h-16 px-6 sm:px-8 text-foreground shadow-lg hover:scale-[1.02] transition-transform rounded-xl shrink-0 bg-background hover:bg-background/95"
                   >
                     <a
-                      href={playStoreUrl}
+                      href={appDownloadUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-3"
@@ -182,7 +205,7 @@ export function HomeClient() {
                           Get it on
                         </span>
                         <span className="text-lg font-bold tracking-tight">Google Play</span>
-                        <span className="text-xs font-normal text-background/55 pt-0.5"> </span>
+                        <span className="text-xs font-normal text-background/55 pt-0.5">Coming soon</span>
                       </span>
                     </span>
                   </Button>
@@ -545,17 +568,27 @@ export function HomeClient() {
                 </p>
                 <div className="mt-10 flex flex-col items-center gap-6" id="get-app">
                   <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                    <Button
-                      size="lg"
-                      asChild
-                      className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform shrink-0"
-                    >
-                      <a href="http://uvd.4dd.mytemp.website/apk/kgolo.apk" download="kgolo.apk" className="inline-flex items-center">
+                    {appDownloadUrl ? (
+                      <Button
+                        size="lg"
+                        asChild
+                        className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform shrink-0"
+                      >
+                        <a
+                          {...appDownloadLinkProps(appDownloadUrl)}
+                          className="inline-flex items-center"
+                        >
+                          <Download className="mr-2 h-5 w-5 shrink-0" />
+                          Download app
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button size="lg" disabled className="h-14 px-8 text-base shrink-0 opacity-80">
                         <Download className="mr-2 h-5 w-5 shrink-0" />
-                        Download APK
-                      </a>
-                    </Button>
-                    {playStoreUrl ? (
+                        Download app
+                      </Button>
+                    )}
+                    {isPlayStoreListing ? (
                       <Button
                         asChild
                         variant="secondary"
@@ -563,7 +596,7 @@ export function HomeClient() {
                         className="h-14 px-6 text-foreground bg-background hover:bg-background/95 shrink-0"
                       >
                         <a
-                          href={playStoreUrl}
+                          href={appDownloadUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2.5"
