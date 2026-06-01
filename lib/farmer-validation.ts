@@ -6,14 +6,33 @@ export function normalizeEmail(value: string): string | null {
 }
 
 export function normalizeSouthAfricanMobile(value: string): string | null {
-  const digits = value.replace(/\D/g, '');
-  let local = digits;
-  if (local.startsWith('27') && local.length >= 11) {
-    local = `0${local.slice(2)}`;
+  let digits = value.replace(/\D/g, '');
+  if (!digits) return null;
+
+  if (digits.startsWith('27') && digits.length >= 11) {
+    digits = `0${digits.slice(2, 11)}`;
+  } else if (digits.length === 9 && /^[1-9]/.test(digits)) {
+    digits = `0${digits}`;
+  } else if (digits.length === 10 && digits.startsWith('0')) {
+    digits = digits.slice(0, 10);
   }
-  if (!local) return null;
-  if (!/^0[1-9]\d{8}$/.test(local)) return null;
-  return local;
+
+  if (!/^0[1-9]\d{8}$/.test(digits)) return null;
+  return digits;
+}
+
+/** Local part only (9 digits, no leading 0) for +27 input boxes. */
+export function sanitizeLocalSaPhoneDigits(raw: string): string {
+  let digits = raw.replace(/\D/g, '');
+  if (digits.startsWith('27')) digits = digits.slice(2);
+  if (digits.startsWith('0')) digits = digits.slice(1);
+  return digits.slice(0, 9);
+}
+
+export function phonesEquivalent(a: string, b: string): boolean {
+  const left = normalizeSouthAfricanMobile(a);
+  const right = normalizeSouthAfricanMobile(b);
+  return left != null && left === right;
 }
 
 function plausibleSaIdYymmdd(yymmdd: string): boolean {

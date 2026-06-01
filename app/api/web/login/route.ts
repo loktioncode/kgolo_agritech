@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { signToken } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { normalizeEmail, normalizeSouthAfricanMobile } from '@/lib/farmer-validation';
+import { normalizeEmail, normalizeSouthAfricanMobile, phonesEquivalent } from '@/lib/farmer-validation';
 
 const DEMO_SUPER_ADMIN_IDENTIFIER =
   process.env.DEMO_SUPER_ADMIN_LOGIN?.trim() || '+27655325054';
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (
-      cleaned === DEMO_SUPER_ADMIN_IDENTIFIER &&
+      phonesEquivalent(cleaned, DEMO_SUPER_ADMIN_IDENTIFIER) &&
       DEMO_SUPER_ADMIN_PASSWORD &&
       password === DEMO_SUPER_ADMIN_PASSWORD
     ) {

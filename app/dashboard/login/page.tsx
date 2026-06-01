@@ -10,10 +10,22 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { sanitizeLocalSaPhoneDigits } from '@/lib/farmer-validation';
+
+type LoginMode = 'email' | 'phone';
+
+function buildLoginIdentifier(mode: LoginMode, email: string, localPhone: string): string {
+  if (mode === 'email') return email.trim();
+  const digits = sanitizeLocalSaPhoneDigits(localPhone);
+  if (!digits) return '';
+  return `0${digits.slice(0, 9)}`;
+}
 
 export default function DashboardLoginPage() {
   const router = useRouter();
-  const [identifier, setIdentifier] = useState('');
+  const [mode, setMode] = useState<LoginMode>('phone');
+  const [email, setEmail] = useState('');
+  const [localPhone, setLocalPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,6 +34,13 @@ export default function DashboardLoginPage() {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    const identifier = buildLoginIdentifier(mode, email, localPhone);
+    if (!identifier || !password) {
+      setError(mode === 'email' ? 'Enter your email and password.' : 'Enter your phone number and password.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch('/api/web/login', {
@@ -79,17 +98,58 @@ export default function DashboardLoginPage() {
             </div>
 
             <form onSubmit={onSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="identifier">Email or phone number</Label>
-                <Input
-                  id="identifier"
-                  placeholder="you@example.com or 0712345678"
-                  value={identifier}
-                  onChange={(e) => setIdentifier(e.target.value)}
-                  autoComplete="username"
-                  required
-                />
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant={mode === 'phone' ? 'default' : 'outline'}
+                  className="flex-1"
+                  onClick={() => setMode('phone')}
+                >
+                  Phone
+                </Button>
+                <Button
+                  type="button"
+                  variant={mode === 'email' ? 'default' : 'outline'}
+                  className="flex-1"
+                  onClick={() => setMode('email')}
+                >
+                  Email
+                </Button>
               </div>
+
+              {mode === 'phone' ? (
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone number</Label>
+                  <div className="flex overflow-hidden rounded-md border border-input bg-background shadow-xs focus-within:ring-2 focus-within:ring-ring">
+                    <span className="flex items-center border-r border-input bg-muted px-3 text-sm font-semibold text-foreground">
+                      +27
+                    </span>
+                    <Input
+                      id="phone"
+                      inputMode="numeric"
+                      placeholder="7655325054 or 0765532505"
+                      value={localPhone}
+                      onChange={(e) => setLocalPhone(sanitizeLocalSaPhoneDigits(e.target.value))}
+                      autoComplete="tel-national"
+                      className="border-0 shadow-none focus-visible:ring-0"
+                      required
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="username"
+                    required
+                  />
+                </div>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
