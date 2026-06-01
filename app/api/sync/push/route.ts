@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import {
+  normalizeEmail,
+  normalizeSouthAfricanMobile,
+  validFarmerContact,
+  validSaIdNumber,
+} from '@/lib/farmer-validation';
 import { prisma } from '@/lib/db';
 import { requireFarmerIdHeader, requireMobileClient } from '@/lib/mobile-client';
 
@@ -8,6 +14,7 @@ type FarmerDTO = {
   name: string;
   id_number: string;
   phone: string;
+  email?: string | null;
   photo_path?: string | null;
   consent_given?: number;
   consent_date?: string | null;
@@ -63,52 +70,6 @@ type ActivityDTO = {
 
 class SyncValidationError extends Error {}
 
-function plausibleSaIdYymmdd(yymmdd: string): boolean {
-  if (!/^\d{6}$/.test(yymmdd)) return false;
-  const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
-  const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
-  const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
-  if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return false;
-  const nowYear = new Date().getFullYear();
-  for (const century of [1900, 2000]) {
-    const year = century + yy;
-    if (year < 1920 || year > nowYear + 1) continue;
-    const d = new Date(year, mm - 1, dd);
-    if (d.getFullYear() === year && d.getMonth() === mm - 1 && d.getDate() === dd) return true;
-  }
-  return false;
-}
-
-function southAfricanIdLuhnValid(id13: string): boolean {
-  if (!/^\d{13}$/.test(id13)) return false;
-  let sum = 0;
-  let alt = false;
-  for (let i = id13.length - 1; i >= 0; i -= 1) {
-    let n = Number.parseInt(id13[i]!, 10);
-    if (alt) {
-      n *= 2;
-      if (n > 9) n -= 9;
-    }
-    sum += n;
-    alt = !alt;
-  }
-  return sum % 10 === 0;
-}
-
-function validSaIdNumber(value: string): boolean {
-  return /^\d{13}$/.test(value) && plausibleSaIdYymmdd(value.slice(0, 6)) && southAfricanIdLuhnValid(value);
-}
-
-function normalizeSouthAfricanMobile(value: string): string | null {
-  const digits = value.replace(/\D/g, '');
-  let local = digits;
-  if (local.startsWith('27') && local.length >= 11) {
-    local = `0${local.slice(2)}`;
-  }
-  if (!/^0[1-9]\d{8}$/.test(local)) return null;
-  return local;
-}
-
 export async function POST(req: NextRequest) {
   const client = requireMobileClient(req);
   if (!client.ok) {
@@ -147,9 +108,14 @@ export async function POST(req: NextRequest) {
     await prisma.$transaction(async (tx) => {
       // ── Farmers ────────────────────────────────────────────────────────────
       for (const f of farmers) {
+        if (f.id !== farmerId) {
+          throw new SyncValidationError('You can only sync your own farmer profile.');
+        }
+
         const idNumber = (f.id_number ?? '').trim();
         const phone = normalizeSouthAfricanMobile(f.phone ?? '');
-        if (!validSaIdNumber(idNumber) || !phone) {
+        const email = normalizeEmail(f.email ?? '');
+        if (!validSaIdNumber(idNumber) || !validFarmerContact(email, phone)) {
           throw new SyncValidationError(`Invalid farmer identity data for farmer ${f.id}.`);
         }
 
@@ -159,7 +125,8 @@ export async function POST(req: NextRequest) {
             id: f.id,
             name: f.name,
             id_number: idNumber,
-            phone,
+            phone: phone ?? '',
+            email,
             photo_path: f.photo_path ?? null,
             consent_given: f.consent_given ?? 0,
             consent_date: f.consent_date ?? null,
@@ -175,7 +142,8 @@ export async function POST(req: NextRequest) {
           update: {
             name: f.name,
             id_number: idNumber,
-            phone,
+            phone: phone ?? '',
+            email,
             photo_path: f.photo_path ?? null,
             consent_given: f.consent_given ?? 0,
             consent_date: f.consent_date ?? null,
@@ -192,6 +160,11 @@ export async function POST(req: NextRequest) {
 
       // ── Parcels ─────────────────────────────────────────────────────────────
       for (const p of parcels) {
+        const existingParcel = await tx.parcel.findUnique({ where: { id: p.id } });
+        if (existingParcel && existingParcel.farmer_id !== farmerId) {
+          throw new SyncValidationError(`Parcel ${p.id} belongs to another farmer.`);
+        }
+
         await tx.parcel.upsert({
           where: { id: p.id },
           create: {
@@ -220,6 +193,11 @@ export async function POST(req: NextRequest) {
 
       // ── Animals ─────────────────────────────────────────────────────────────
       for (const a of animals) {
+        const existingAnimal = await tx.animal.findUnique({ where: { id: a.id } });
+        if (existingAnimal && existingAnimal.farmer_id !== farmerId) {
+          throw new SyncValidationError(`Animal ${a.id} belongs to another farmer.`);
+        }
+
         await tx.animal.upsert({
           where: { id: a.id },
           create: {
@@ -254,6 +232,11 @@ export async function POST(req: NextRequest) {
 
       // ── Activities ──────────────────────────────────────────────────────────
       for (const ac of activities) {
+        const existingActivity = await tx.activity.findUnique({ where: { id: ac.id } });
+        if (existingActivity && existingActivity.farmer_id !== farmerId) {
+          throw new SyncValidationError(`Activity ${ac.id} belongs to another farmer.`);
+        }
+
         await tx.activity.upsert({
           where: { id: ac.id },
           create: {

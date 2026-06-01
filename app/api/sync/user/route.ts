@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { requireAuth } from '@/lib/auth';
+import { anonymizeFarmerAndData } from '@/lib/account-deletion';
 import { prisma } from '@/lib/db';
 import { requireMobileClient } from '@/lib/mobile-client';
 
 /**
  * DELETE /api/sync/user
- * Called when a farmer withdraws consent on their device.
- * Anonymises the farmer's personal data and marks all records for deletion.
+ * Called when a farmer withdraws consent on their device (signed in).
  */
 export async function DELETE(req: NextRequest) {
   const client = requireMobileClient(req);
@@ -20,23 +20,8 @@ export async function DELETE(req: NextRequest) {
 
   try {
     if (auth.farmerId) {
-      const now = new Date().toISOString();
-      // Anonymise farmer PII
-      await prisma.farmer.update({
-        where: { id: auth.farmerId },
-        data: {
-          name: '[withdrawn]',
-          id_number: '[withdrawn]',
-          phone: '[withdrawn]',
-          address: null,
-          photo_path: null,
-          consent_given: 0,
-          consent_date: null,
-          updated_at: now,
-        },
-      });
+      await anonymizeFarmerAndData(auth.farmerId);
     }
-    // Unlink farmer from user account
     await prisma.user.update({
       where: { id: auth.userId },
       data: { farmer_id: null },

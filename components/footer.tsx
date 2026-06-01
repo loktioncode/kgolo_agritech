@@ -12,6 +12,7 @@ const navLinks = [
 const quickLinks = [
   { name: "Terms of Service", href: "/legal" },
   { name: "Privacy Policy / POPIA Notice", href: "/legal" },
+  { name: "Delete account & data", href: "/delete-accounts" },
 ]
 
 const TAGLINE = "Your farm, verified. Your future, unlocked."

@@ -89,7 +89,7 @@ export default function DashboardLoginPage() {
                 <Label htmlFor="identifier">National ID or phone number</Label>
                 <Input
                   id="identifier"
-                  placeholder="e.g. 9001015009087 or 0712345678"
+                  placeholder="e.g. 9001155009086 or 0712345678"
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   autoComplete="off"

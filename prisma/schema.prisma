@@ -24,6 +24,7 @@ model Farmer {
   name           String  @db.VarChar(255)
   id_number      String  @db.VarChar(100)
   phone          String  @db.VarChar(50)
+  email          String? @db.VarChar(255)
   photo_path     String? @db.VarChar(500)
   consent_given  Int     @default(0)
   consent_date   String? @db.VarChar(30)
@@ -108,4 +109,17 @@ model Activity {
   parcel Parcel? @relation(fields: [parcel_id], references: [id])
 
   @@map("activities")
+}
+
+model AccountDeletionRequest {
+  id           String   @id @default(uuid()) @db.VarChar(36)
+  phone        String   @db.VarChar(50)
+  reason       String   @db.Text
+  farmer_id    String?  @db.VarChar(36)
+  status       String   @default("pending") @db.VarChar(20)
+  submitted_at DateTime @default(now())
+
+  @@index([phone])
+  @@index([status])
+  @@map("account_deletion_requests")
 }

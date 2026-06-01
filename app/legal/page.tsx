@@ -87,10 +87,12 @@ export default function LegalPage() {
                                         <li>Farmer data is never sold. We do not share personal or production data without your consent.</li>
                                         <li>
                                             You may request account and personal data deletion via{" "}
-                                            <Link href="/delete-acounts" className="underline hover:text-foreground">
-                                                /delete-acounts
+                                            <Link href="/delete-accounts" className="underline hover:text-foreground">
+                                                /delete-accounts
                                             </Link>{" "}
-                                            or by contacting <strong>info@kgolo.co.za</strong>.
+                                            or by contacting <strong>info@kgolo.co.za</strong>. In the{" "}
+                                            <strong>Kgolo Farmer ID</strong> app, use Settings →{" "}
+                                            <strong>Withdraw consent</strong> to delete all local data immediately.
                                         </li>
                                     </ul>
                                 </div>
@@ -119,7 +121,7 @@ export default function LegalPage() {
                                             <strong>Location (fine/coarse):</strong> Used to capture parcel and field GPS coordinates.
                                         </li>
                                         <li>
-                                            <strong>Microphone/Audio:</strong> Used only when camera or media features require audio capture.
+                                            <strong>Microphone/Audio:</strong> Not used by Kgolo Farmer ID (still photos only).
                                         </li>
                                         <li>
                                             <strong>Calendar:</strong> Used to create reminders and scheduled farm activity events.
