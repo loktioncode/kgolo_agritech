@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader } from "@/components/ui/sheet"
 import { Menu, ChevronRight } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { cn } from "@/lib/utils"
+import { useDashboardSession } from "@/hooks/use-dashboard-session"
 
-const navigation = [
+const publicNavigation = [
   { name: "Home", href: "/" },
-  { name: "Dashboard", href: "/dashboard/login" },
   { name: "Services", href: "/services" },
   { name: "Solutions", href: "/solutions" },
   { name: "About", href: "/about" },
@@ -21,6 +21,18 @@ const navigation = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+  const { isLoggedIn, signOut: clearSession } = useDashboardSession()
+
+  const navigation = isLoggedIn
+    ? [...publicNavigation.slice(0, 1), { name: "Dashboard", href: "/dashboard" }, ...publicNavigation.slice(1)]
+    : publicNavigation
+
+  const signOut = () => {
+    clearSession()
+    setIsOpen(false)
+    router.push("/")
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -51,9 +63,15 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-4">
-          <Button size="sm" variant="outline" asChild>
-            <Link href="/dashboard/login">Login</Link>
-          </Button>
+          {isLoggedIn ? (
+            <Button size="sm" variant="outline" onClick={signOut}>
+              Log out
+            </Button>
+          ) : (
+            <Button size="sm" variant="outline" asChild>
+              <Link href="/dashboard/login">Login</Link>
+            </Button>
+          )}
           <Button size="sm" className="shadow-lg shadow-primary/20" asChild>
             <Link href="/contact">Contact Us</Link>
           </Button>
@@ -108,11 +126,17 @@ export function Header() {
 
               <div className="px-8 py-8 bg-secondary/30 border-t border-border/50">
                 <div className="grid gap-4">
-                  <Button variant="outline" className="w-full justify-center h-12 rounded-xl" asChild>
-                    <Link href="/dashboard/login" onClick={() => setIsOpen(false)}>
-                      Farmer Login
-                    </Link>
-                  </Button>
+                  {isLoggedIn ? (
+                    <Button variant="outline" className="w-full justify-center h-12 rounded-xl" onClick={signOut}>
+                      Log out
+                    </Button>
+                  ) : (
+                    <Button variant="outline" className="w-full justify-center h-12 rounded-xl" asChild>
+                      <Link href="/dashboard/login" onClick={() => setIsOpen(false)}>
+                        Farmer Login
+                      </Link>
+                    </Button>
+                  )}
                   <Button className="w-full justify-center shadow-xl shadow-primary/20 h-14 text-lg font-bold rounded-2xl" asChild>
                     <Link href="/contact" onClick={() => setIsOpen(false)}>
                       Let&apos;s Chat

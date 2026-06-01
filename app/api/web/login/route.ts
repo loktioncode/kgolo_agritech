@@ -1,63 +1,66 @@
+import bcrypt from 'bcryptjs';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { signToken } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { normalizeEmail, normalizeSouthAfricanMobile } from '@/lib/farmer-validation';
 
 const DEMO_SUPER_ADMIN_IDENTIFIER =
   process.env.DEMO_SUPER_ADMIN_LOGIN?.trim() || '+27655325054';
+const DEMO_SUPER_ADMIN_PASSWORD = process.env.DEMO_SUPER_ADMIN_PASSWORD?.trim() || '';
 
-function plausibleSaIdYymmdd(yymmdd: string): boolean {
-  if (!/^\d{6}$/.test(yymmdd)) return false;
-  const yy = Number.parseInt(yymmdd.slice(0, 2), 10);
-  const mm = Number.parseInt(yymmdd.slice(2, 4), 10);
-  const dd = Number.parseInt(yymmdd.slice(4, 6), 10);
-  if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return false;
-  const nowYear = new Date().getFullYear();
-  for (const century of [1900, 2000]) {
-    const year = century + yy;
-    if (year < 1920 || year > nowYear + 1) continue;
-    const d = new Date(year, mm - 1, dd);
-    if (d.getFullYear() === year && d.getMonth() === mm - 1 && d.getDate() === dd) return true;
+async function findUserByIdentifier(identifier: string) {
+  const email = normalizeEmail(identifier);
+  if (email) {
+    return prisma.user.findUnique({
+      where: { email },
+      include: {
+        farmer: {
+          select: { id: true, id_number: true, phone: true, name: true, updated_at: true },
+        },
+      },
+    });
   }
-  return false;
-}
 
-function southAfricanIdLuhnValid(id13: string): boolean {
-  if (!/^\d{13}$/.test(id13)) return false;
-  let sum = 0;
-  let alt = false;
-  for (let i = id13.length - 1; i >= 0; i -= 1) {
-    let n = Number.parseInt(id13[i]!, 10);
-    if (alt) {
-      n *= 2;
-      if (n > 9) n -= 9;
-    }
-    sum += n;
-    alt = !alt;
-  }
-  return sum % 10 === 0;
-}
+  const phone = normalizeSouthAfricanMobile(identifier);
+  if (!phone) return null;
 
-function isValidSaIdNumber(value: string): boolean {
-  return /^\d{13}$/.test(value) && plausibleSaIdYymmdd(value.slice(0, 6)) && southAfricanIdLuhnValid(value);
+  const farmer = await prisma.farmer.findFirst({
+    where: { phone },
+    select: { id: true },
+  });
+  if (!farmer) return null;
+
+  return prisma.user.findFirst({
+    where: { farmer_id: farmer.id },
+    include: {
+      farmer: {
+        select: { id: true, id_number: true, phone: true, name: true, updated_at: true },
+      },
+    },
+  });
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const { identifier } = (await req.json()) as { identifier?: string };
+    const { identifier, password } = (await req.json()) as {
+      identifier?: string;
+      password?: string;
+    };
     const cleaned = identifier?.trim();
 
-    if (!cleaned) {
+    if (!cleaned || !password) {
       return NextResponse.json(
-        { error: 'National ID or phone number is required' },
+        { error: 'Email or phone number and password are required' },
         { status: 400 },
       );
     }
-    if (/^\d{13}$/.test(cleaned) && !isValidSaIdNumber(cleaned)) {
-      return NextResponse.json({ error: 'Invalid SA ID number.' }, { status: 400 });
-    }
 
-    if (cleaned === DEMO_SUPER_ADMIN_IDENTIFIER) {
+    if (
+      cleaned === DEMO_SUPER_ADMIN_IDENTIFIER &&
+      DEMO_SUPER_ADMIN_PASSWORD &&
+      password === DEMO_SUPER_ADMIN_PASSWORD
+    ) {
       const token = signToken({ userId: 'super-admin-demo', farmerId: null });
       return NextResponse.json({
         token,
@@ -71,32 +74,30 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const farmer = await prisma.farmer.findFirst({
-      where: {
-        OR: [{ id_number: cleaned }, { phone: cleaned }],
-      },
-      select: { id: true, id_number: true, phone: true, name: true, updated_at: true },
-    });
+    const user = await findUserByIdentifier(cleaned);
+    if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+      return NextResponse.json({ error: 'Invalid email, phone, or password' }, { status: 401 });
+    }
 
-    if (!farmer) {
+    if (!user.farmer) {
       return NextResponse.json(
         {
           error:
-            'No synced farmer profile found for this National ID or phone number. Please sync in the mobile app first.',
+            'Account found but no farmer profile is linked yet. Open the mobile app, register, and sync first.',
         },
         { status: 404 },
       );
     }
 
-    const token = signToken({ userId: `farmer:${farmer.id}`, farmerId: farmer.id });
+    const token = signToken({ userId: user.id, farmerId: user.farmer.id });
     return NextResponse.json({
       token,
       farmer: {
-        id: farmer.id,
-        name: farmer.name,
-        nationalId: farmer.id_number,
-        phone: farmer.phone,
-        lastSyncAt: farmer.updated_at,
+        id: user.farmer.id,
+        name: user.farmer.name,
+        nationalId: user.farmer.id_number,
+        phone: user.farmer.phone,
+        lastSyncAt: user.farmer.updated_at,
       },
     });
   } catch (err) {

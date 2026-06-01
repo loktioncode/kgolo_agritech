@@ -14,6 +14,7 @@ import { Label } from '@/components/ui/label';
 export default function DashboardLoginPage() {
   const router = useRouter();
   const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +27,7 @@ export default function DashboardLoginPage() {
       const res = await fetch('/api/web/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier }),
+        body: JSON.stringify({ identifier, password }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -67,32 +68,38 @@ export default function DashboardLoginPage() {
             Kgolo Central Dashboard
           </p>
           <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-             Verified  farm records in one place
+            Verified farm records in one place
           </h1>
-          <p className="mt-4 max-w-lg text-base text-background/85">
-            Login with your National ID or phone number used in the mobile app. If your profile is not found, sync from
-            the app first.
-          </p>
         </section>
 
         <Card className="border-background/20 bg-background/95 shadow-2xl">
           <CardContent className="space-y-6 p-6 md:p-8">
             <div>
               <h2 className="text-2xl font-bold">Farmer Login</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Use your National ID or phone number.
-              </p>
             </div>
 
             <form onSubmit={onSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="identifier">National ID or phone number</Label>
+                <Label htmlFor="identifier">Email or phone number</Label>
                 <Input
                   id="identifier"
-                  placeholder="e.g. 9001155009086 or 0712345678"
+                  placeholder="you@example.com or 0712345678"
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
-                  autoComplete="off"
+                  autoComplete="username"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
                   required
                 />
               </div>
