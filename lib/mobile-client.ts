@@ -29,7 +29,7 @@ export function requireMobileClient(req: NextRequest): MobileClientCheckResult {
     return { ok: false, status: 401, error: 'Missing app credentials' };
   }
 
-  const appIdPattern = /^KG_[A-Za-z0-9]{8,64}$/;
+  const appIdPattern = /^KG_[A-Za-z0-9-]{8,64}$/;
   if (!appIdPattern.test(appId)) {
     return { ok: false, status: 401, error: 'Invalid app id format' };
   }
