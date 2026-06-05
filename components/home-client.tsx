@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   ArrowRight,
-  Download,
   Play,
   Landmark,
   Users,
@@ -93,17 +92,13 @@ const stats = [
   { value: "Offline", label: "Works without signal" },
 ]
 
-function appDownloadLinkProps(url: string) {
-  const isDirectApk = /\.apk(\?|#|$)/i.test(url) || url.includes("expo.dev/artifacts")
-  return isDirectApk
-    ? ({ href: url, download: "kgolo.apk" } as const)
-    : ({ href: url, target: "_blank", rel: "noopener noreferrer" } as const)
-}
+const DEFAULT_PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=za.co.kgolo.farmerid"
 
 export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"livestock" | "crops">("livestock")
-  const appDownloadUrl = process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || ""
-  const isPlayStoreListing = appDownloadUrl.includes("play.google.com")
+  const playStoreUrl =
+    process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || DEFAULT_PLAY_STORE_URL
 
   return (
     <>
@@ -144,72 +139,27 @@ export function HomeClient() {
             <FadeIn direction="up" delay={0.8} className="mt-10">
               <p className="mb-4 text-sm font-medium uppercase tracking-wider text-background/75">Get the app</p>
               <div className="flex flex-row flex-wrap items-center gap-4">
-                {appDownloadUrl ? (
-                  <Button
-                    asChild
-                    size="lg"
-                    className="h-16 px-8 sm:px-10 text-lg font-semibold shadow-xl shadow-primary/35 hover:scale-[1.02] transition-transform rounded-xl shrink-0"
+                <Button
+                  asChild
+                  variant="secondary"
+                  size="lg"
+                  className="h-16 px-6 sm:px-8 text-foreground shadow-lg hover:scale-[1.02] transition-transform rounded-xl shrink-0 bg-background hover:bg-background/95"
+                >
+                  <a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3"
                   >
-                    <a
-                      {...appDownloadLinkProps(appDownloadUrl)}
-                      className="inline-flex items-center"
-                    >
-                      <Download className="mr-3 h-6 w-6 shrink-0" />
-                      Download app
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    type="button"
-                    size="lg"
-                    disabled
-                    className="h-16 px-8 sm:px-10 text-lg font-semibold rounded-xl shrink-0 opacity-80"
-                  >
-                    <Download className="mr-3 h-6 w-6 shrink-0" />
-                    Download app
-                  </Button>
-                )}
-                {isPlayStoreListing ? (
-                  <Button
-                    asChild
-                    variant="secondary"
-                    size="lg"
-                    className="h-16 px-6 sm:px-8 text-foreground shadow-lg hover:scale-[1.02] transition-transform rounded-xl shrink-0 bg-background hover:bg-background/95"
-                  >
-                    <a
-                      href={appDownloadUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3"
-                    >
-                      <Play className="h-7 w-7 shrink-0 text-[#01875f]" strokeWidth={2.25} />
-                      <span className="flex flex-col items-start leading-none gap-1">
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                          Get it on
-                        </span>
-                        <span className="text-lg font-bold tracking-tight">Google Play</span>
+                    <Play className="h-7 w-7 shrink-0 text-[#01875f]" strokeWidth={2.25} />
+                    <span className="flex flex-col items-start leading-none gap-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        Get it on
                       </span>
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    disabled
-                    className="min-h-16 py-3 px-6 h-auto border-background/40 bg-background/10 text-background cursor-not-allowed opacity-80 shrink-0 rounded-xl"
-                  >
-                    <span className="flex items-center gap-3">
-                      <Play className="h-7 w-7 shrink-0 opacity-50" />
-                      <span className="flex flex-col items-start leading-none gap-1 text-left">
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-background/60">
-                          Get it on
-                        </span>
-                        <span className="text-lg font-bold tracking-tight">Google Play</span>
-                        <span className="text-xs font-normal text-background/55 pt-0.5">Coming soon</span>
-                      </span>
+                      <span className="text-lg font-bold tracking-tight">Google Play</span>
                     </span>
-                  </Button>
-                )}
+                  </a>
+                </Button>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={1} className="mt-8">
@@ -568,66 +518,27 @@ export function HomeClient() {
                 </p>
                 <div className="mt-10 flex flex-col items-center gap-6" id="get-app">
                   <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                    {appDownloadUrl ? (
-                      <Button
-                        size="lg"
-                        asChild
-                        className="h-14 px-8 text-base font-semibold hover:scale-105 transition-transform shrink-0"
+                    <Button
+                      asChild
+                      variant="secondary"
+                      size="lg"
+                      className="h-14 px-6 text-foreground bg-background hover:bg-background/95 shrink-0 hover:scale-105 transition-transform"
+                    >
+                      <a
+                        href={playStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5"
                       >
-                        <a
-                          {...appDownloadLinkProps(appDownloadUrl)}
-                          className="inline-flex items-center"
-                        >
-                          <Download className="mr-2 h-5 w-5 shrink-0" />
-                          Download app
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button size="lg" disabled className="h-14 px-8 text-base shrink-0 opacity-80">
-                        <Download className="mr-2 h-5 w-5 shrink-0" />
-                        Download app
-                      </Button>
-                    )}
-                    {isPlayStoreListing ? (
-                      <Button
-                        asChild
-                        variant="secondary"
-                        size="lg"
-                        className="h-14 px-6 text-foreground bg-background hover:bg-background/95 shrink-0"
-                      >
-                        <a
-                          href={appDownloadUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2.5"
-                        >
-                          <Play className="h-6 w-6 shrink-0 text-[#01875f]" strokeWidth={2.25} />
-                          <span className="flex flex-col items-start leading-none gap-0.5">
-                            <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
-                              Get it on
-                            </span>
-                            <span className="text-base font-bold tracking-tight">Google Play</span>
+                        <Play className="h-6 w-6 shrink-0 text-[#01875f]" strokeWidth={2.25} />
+                        <span className="flex flex-col items-start leading-none gap-0.5">
+                          <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
+                            Get it on
                           </span>
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        disabled
-                        className="h-14 px-6 border-background/40 bg-background/10 text-background cursor-not-allowed shrink-0"
-                      >
-                        <span className="inline-flex items-center gap-2.5">
-                          <Play className="h-6 w-6 shrink-0 opacity-50" />
-                          <span className="flex flex-col items-start leading-none gap-0.5 text-left">
-                            <span className="text-[9px] font-semibold uppercase tracking-wider text-background/60">
-                              Get it on
-                            </span>
-                            <span className="text-base font-bold">Google Play</span>
-                          </span>
+                          <span className="text-base font-bold tracking-tight">Google Play</span>
                         </span>
-                      </Button>
-                    )}
+                      </a>
+                    </Button>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
