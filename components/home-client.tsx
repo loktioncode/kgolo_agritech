@@ -138,7 +138,7 @@ export function HomeClient() {
             </FadeIn>
             <FadeIn direction="up" delay={0.8} className="mt-10">
               <p className="mb-4 text-sm font-medium uppercase tracking-wider text-background/75">Get the app</p>
-              <div className="flex flex-row flex-wrap items-center gap-4">
+              <div id="get-app" className="flex flex-row flex-wrap items-center gap-4">
                 <Button
                   asChild
                   variant="secondary"
@@ -516,51 +516,26 @@ export function HomeClient() {
                   Taung roots, Setswana name: Kgolo means growth. Get involved: we will call farmers who apply with
                   name, phone, district, and herd size.
                 </p>
-                <div className="mt-10 flex flex-col items-center gap-6" id="get-app">
-                  <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                    <Button
-                      asChild
-                      variant="secondary"
-                      size="lg"
-                      className="h-14 px-6 text-foreground bg-background hover:bg-background/95 shrink-0 hover:scale-105 transition-transform"
-                    >
-                      <a
-                        href={playStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2.5"
-                      >
-                        <Play className="h-6 w-6 shrink-0 text-[#01875f]" strokeWidth={2.25} />
-                        <span className="flex flex-col items-start leading-none gap-0.5">
-                          <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
-                            Get it on
-                          </span>
-                          <span className="text-base font-bold tracking-tight">Google Play</span>
-                        </span>
-                      </a>
-                    </Button>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      asChild
-                      className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
-                    >
-                      <Link href="/contact">
-                        Apply or get in touch
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
-                      asChild
-                    >
-                      <Link href="tel:+27697919811">Call 069 791 9811</Link>
-                    </Button>
-                  </div>
+                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                    className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
+                  >
+                    <Link href="/contact">
+                      Apply or get in touch
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-background/10 text-background border-background/30 hover:bg-background/20 hover:text-background hover:scale-105 transition-transform"
+                    asChild
+                  >
+                    <Link href="tel:+27697919811">Call 069 791 9811</Link>
+                  </Button>
                 </div>
               </div>
             </div>
