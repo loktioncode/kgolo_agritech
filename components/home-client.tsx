@@ -92,13 +92,11 @@ const stats = [
   { value: "Offline", label: "Works without signal" },
 ]
 
-const DEFAULT_PLAY_STORE_URL =
+const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=za.co.kgolo.farmerid"
 
 export function HomeClient() {
   const [activeTab, setActiveTab] = useState<"livestock" | "crops">("livestock")
-  const playStoreUrl =
-    process.env.NEXT_PUBLIC_PLAY_STORE_URL?.trim() || DEFAULT_PLAY_STORE_URL
 
   return (
     <>
@@ -146,7 +144,7 @@ export function HomeClient() {
                   className="h-16 px-6 sm:px-8 text-foreground shadow-lg hover:scale-[1.02] transition-transform rounded-xl shrink-0 bg-background hover:bg-background/95"
                 >
                   <a
-                    href={playStoreUrl}
+                    href={PLAY_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3"
